@@ -45,10 +45,56 @@
                 <canvas id="doughnutChart" class="chart"></canvas>
             </div>
             <!-- 구역2 -->
+            <!-- 기존 코드 -->
             <div class="info-item-2">
                 <h2>2. 공지사항</h2>
                 <p>공지사항(알림/이벤트)를 2열로 표시합니다.</p>
+
+                <!-- 새로 추가된 공지사항 부분 -->
+                <div class="notice-board">
+                    <!-- 알림 열 -->
+                    <div class="notice-column">
+                        <h3>알림</h3>
+                        <ul>
+                            <li>
+                                <strong>알림 제목 1</strong>
+                                <p>알림 내용이 여기에 들어갑니다. 예를 들어, 중요한 시스템 점검이나 공지사항 등.</p>
+                            </li>
+                            <li>
+                                <strong>알림 제목 2</strong>
+                                <p>또 다른 알림 내용이 여기에 들어갑니다. 더 많은 정보는 링크를 통해 확인해 주세요.</p>
+                            </li>
+                            <li>
+                                <strong>알림 제목 3</strong>
+                                <p>추가 알림 내용입니다. 이 내용은 예시일 뿐이며, 실제 공지사항으로 대체될 수 있습니다.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 세로 구분선 -->
+                    <div class="divider"></div>
+
+                    <!-- 이벤트 열 -->
+                    <div class="notice-column">
+                        <h3>이벤트</h3>
+                        <ul>
+                            <li>
+                                <strong>이벤트 제목 1</strong>
+                                <p>이벤트 내용이 여기에 들어갑니다. 예를 들어, 특별한 할인 행사나 참여 이벤트 등.</p>
+                            </li>
+                            <li>
+                                <strong>이벤트 제목 2</strong>
+                                <p>다른 이벤트 내용이 여기에 들어갑니다. 이벤트에 대한 자세한 내용은 링크를 통해 확인해 주세요.</p>
+                            </li>
+                            <li>
+                                <strong>이벤트 제목 3</strong>
+                                <p>추가 이벤트 내용입니다. 실제 이벤트 내용으로 대체될 수 있습니다.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
             <!-- 구역3 -->
             <div class="info-item-3">
                 <h2>3. 로그인 바로하기</h2>
@@ -69,16 +115,25 @@
             <div class="bookmark-list">
                 <div class="bookmark-item">
                     <h3>즐겨찾기 1</h3>
+                    <div class="image-box">
+                        <p>이미지</p>
+                    </div> 
                     <p>즐겨찾기1에 대한 세부 내용을 간단히 적어주세요.</p>
                     <a href="{% url '즐겨찾기 1' %}">즐겨찾기1 이동버튼</a>
                 </div>
                 <div class="bookmark-item">
                     <h3>즐겨찾기 2</h3>
+                    <div class="image-box">
+                        <p>이미지</p>
+                    </div> 
                     <p>즐겨찾기2에 대한 세부 내용을 간단히 적어주세요.</p>
                     <a href="{% url '즐겨찾기 2' %}">즐겨찾기2 이동버튼</a>
                 </div>
                 <div class="bookmark-item">
                     <h3>즐겨찾기 3</h3>
+                    <div class="image-box">
+                        <p>이미지</p>
+                    </div> 
                     <p>즐겨찾기3에 대한 세부 내용을 간단히 적어주세요.</p>
                     <a href="{% url '즐겨찾기 3' %}">즐겨찾기3 이동버튼</a>
                 </div>
@@ -117,8 +172,8 @@
                 datasets: [{
                     label: '전력 사용량 (kWh)',
                     data: [12, 19, 3, 5, 2, 3, 10],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)', // 회색 음영
+                    borderColor: 'rgba(0, 0, 0, 1)', // 검정색
                     borderWidth: 1
                 }]
             },
@@ -131,6 +186,7 @@
             }
         });
 
+
         // 도넛형 그래프 설정
         const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
         new Chart(doughnutCtx, {
@@ -141,14 +197,14 @@
                     label: '전력 소비 비율',
                     data: [40, 30, 30],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
+                        'rgba(0, 0, 0, 0.2)', // 회색 음영 1
+                        'rgba(0, 0, 0, 0.4)', // 회색 음영 2
+                        'rgba(0, 0, 0, 0.6)'  // 회색 음영 3
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
+                        'rgba(0, 0, 0, 1)', // 검정색
+                        'rgba(0, 0, 0, 1)', // 검정색
+                        'rgba(0, 0, 0, 1)'  // 검정색
                     ],
                     borderWidth: 1
                 }]
@@ -157,6 +213,7 @@
                 responsive: true
             }
         });
+
 
         // 페이지 이동-최상단
         function scrollToTop() {

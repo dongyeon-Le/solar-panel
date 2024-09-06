@@ -18,7 +18,6 @@ urlpatterns = [
     path('bookmark_3/', views.bookmark_3_view, name='즐겨찾기 3'),
     
     # 바로가기
-    path('mypage/', views.quick_mypage_view, name='마이페이지'),
     path('recent/', views.quick_recent_view, name='최근접속'),
     path('contact/', views.quick_contact_view, name='문의방법'),
     

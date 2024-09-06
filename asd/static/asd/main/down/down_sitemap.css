@@ -118,6 +118,66 @@ header p {
     font-size: 1.5em;
     margin-bottom: 15px;
 }
+/* 공지사항 영역 스타일 */
+.notice-board {
+    display: flex; /* 두 열을 가로로 나열 */
+    justify-content: space-between; /* 열 사이 간격 자동 조정 */
+    margin-top: 20px;
+}
+
+.notice-column {
+    flex: 1; /* 열이 균등하게 크기를 가짐 */
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* 오른쪽 열과의 간격 */
+}
+
+.notice-column:last-child {
+    margin-right: 0; /* 마지막 열의 오른쪽 여백 제거 */
+}
+
+.notice-column h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.notice-column ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notice-column li {
+    font-size: 0.9em; /* 글자 크기 조정 */
+    margin-bottom: 15px;
+}
+
+.notice-column li strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.notice-column li p {
+    margin: 0;
+    color: #555;
+}
+
+/* 세로 구분선 스타일 */
+.notice-board::before {
+    content: "";
+    width: 1px;
+    background-color: #ddd;
+    height: 100%; /* 열의 높이에 맞춤 */
+    display: block;
+    position: absolute;
+    left: calc(50% - 1px); /* 세로 중앙 위치 조정 */
+    top: 0;
+}
+
 
 /* 즐겨찾기 섹션 스타일 */
 .bookmark {

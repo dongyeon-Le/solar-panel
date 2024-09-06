@@ -33,8 +33,8 @@ def bookmark_3_view(request):
     return render(request, 'asd/main/bookmark/bookmark_3.html')  # 즐겨찾기 3
 
 ## 바로가기
-def quick_mypage_view(request):  # 마이페이지 
-    return render(request, 'asd/mypage/user/mypage.html')
+def mypage_view(request):
+    return render(request, 'asd/mypage/mypage.html')
 def quick_recent_view(request):  # 최근접속 
     return render(request, 'asd/main/basic/main_recent.html')
 def quick_contact_view(request):  # 문의방법
