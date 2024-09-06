@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈페이지</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'asd/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js 추가 -->
 </head>
 <body>
     <!-- 상단 -->
@@ -28,6 +29,9 @@
 
     <!-- 중앙 -->
     <div class="content">
+        <div class="image-box">
+            <p>여기에 나중에 대표사진이 들어갑니다.</p>
+        </div>        
         <h1>홈페이지 화면 제목입니다.</h1>
         <p>세부설명을 기재해주세요.</p>
 
@@ -37,6 +41,8 @@
             <div class="info-item-1">
                 <h2>1. 전력 사용량</h2>
                 <p>사용량을 그래프, 표로 시각화해주세요.</p>
+                <canvas id="barChart" class="chart"></canvas>
+                <canvas id="doughnutChart" class="chart"></canvas>
             </div>
             <!-- 구역2 -->
             <div class="info-item-2">
@@ -61,19 +67,16 @@
         <div class="bookmark">
             <h2>즐겨찾기한 서비스로 이동할 수 있습니다.</h2>
             <div class="bookmark-list">
-                <!-- 구역3 -->
                 <div class="bookmark-item">
                     <h3>즐겨찾기 1</h3>
                     <p>즐겨찾기1에 대한 세부 내용을 간단히 적어주세요.</p>
                     <a href="{% url '즐겨찾기 1' %}">즐겨찾기1 이동버튼</a>
                 </div>
-                <!-- 구역3 -->
                 <div class="bookmark-item">
                     <h3>즐겨찾기 2</h3>
                     <p>즐겨찾기2에 대한 세부 내용을 간단히 적어주세요.</p>
                     <a href="{% url '즐겨찾기 2' %}">즐겨찾기2 이동버튼</a>
                 </div>
-                <!-- 구역3 -->
                 <div class="bookmark-item">
                     <h3>즐겨찾기 3</h3>
                     <p>즐겨찾기3에 대한 세부 내용을 간단히 적어주세요.</p>
@@ -87,13 +90,11 @@
             <a href="{% url '마이페이지' %}">마이 페이지</a>
             <a href="{% url '최근접속' %}">최근 접속</a>
             <a href="{% url '문의방법' %}">문의 방법</a>
-            <!-- 하단에 top/down 버튼 추가 -->
             <div class="top-bottom-buttons">
                 <a href="#" onclick="scrollToTop()">top</a>
                 <a href="#" onclick="scrollToBottom()">down</a>
             </div>
         </div>
-
     </div>
 
     <!-- 하단 메뉴 -->
@@ -101,14 +102,62 @@
         <a href="{% url '개인정보 처리방침' %}">개인정보 처리 방침</a>
         <a href="{% url '이용약관' %}">이용약관</a>
         <a href="{% url '사이트맵' %}">사이트맵</a>
-
-        <!-- 문의처(이메일) -->
         <div class="footer-email">
             E-mail: asdfasdf@asd.co.kr
         </div>
     </footer>
 
     <script>
+        // 막대형 그래프 설정
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                datasets: [{
+                    label: '전력 사용량 (kWh)',
+                    data: [12, 19, 3, 5, 2, 3, 10],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // 도넛형 그래프 설정
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['주거용', '상업용', '산업용'],
+                datasets: [{
+                    label: '전력 소비 비율',
+                    data: [40, 30, 30],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
         // 페이지 이동-최상단
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });

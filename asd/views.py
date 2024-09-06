@@ -2,7 +2,6 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-
 from asd.forms import LoginForm, PanelForm
 from .models import Panel
 
@@ -35,8 +34,7 @@ def bookmark_3_view(request):
 
 ## 바로가기
 def quick_mypage_view(request):  # 마이페이지 
-    panels = Panel.objects.all()          
-    return render(request, 'asd/mypage/user/mypage_mypage.html', {'panels': panels})
+    return render(request, 'asd/mypage/user/mypage.html')
 def quick_recent_view(request):  # 최근접속 
     return render(request, 'asd/main/basic/main_recent.html')
 def quick_contact_view(request):  # 문의방법
@@ -55,7 +53,7 @@ def down_sitemap_view(request):  # 사이트맵
 ## 회원가입
 # 회원가입 창
 def signup_view(request):
-    return render(request, 'asd/user/basic/signup.html', {'form': form})
+    return render(request, 'asd/user/basic/signup.html')
 
 #---------------------------------------------------------------
 
@@ -77,6 +75,8 @@ def login_view(request):
     return render(request, 'asd/user/basic/login.html', {'form': form})
 
 ## 회원정보 찾기
+def find_view(request):  # 회원정보 찾기      
+    return render(request, 'asd/user/find/find.html')
 def find_id_view(request):  # 아이디 찾기      
     return render(request, 'asd/user/find/find_id.html')
 def find_pw_view(request):  # 비밀번호 찾기      
@@ -88,8 +88,8 @@ def find_pw_view(request):  # 비밀번호 찾기
 
 ## 마이페이지 홈
 @login_required
-def mypage_mypage_view(request):
-    return render(request, 'asd/mypage/user/mypage_mypage.html')
+def mypage_view(request):
+    return render(request, 'asd/mypage/mypage.html')
 
 ## 마이페이지 - 회원
 # 회원정보 조회
@@ -111,19 +111,10 @@ def modify_user_view(request):
 ## 마이페이지 - 패널
 
 # 패널정보조회
-def search_panel_view(request, pk):
-    panel = get_object_or_404(Panel, pk=pk)
-    return render(request, 'asd/mypage/panel/search_panel.html', {'panel': panel})
+def search_panel_view(request):
+    return render(request, 'asd/mypage/panel/search_panel.html')
 
 #패널정보수정
-def modify_panel_view(request, pk):
-    panel = get_object_or_404(Panel, pk=pk)
-    if request.method == "POST":
-        form = PanelForm(request.POST, instance=panel)
-        if form.is_valid():
-            form.save()
-            return redirect('mypage')
-    else:
-        form = PanelForm(instance=panel)
-    return render(request, 'asd/mypage/panel/modify_panel.html', {'form': form})
+def modify_panel_view(request):
+    return render(request, 'asd/mypage/panel/modify_panel.html')
 #---------------------------------------------------------------

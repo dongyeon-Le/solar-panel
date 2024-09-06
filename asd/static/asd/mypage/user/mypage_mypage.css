@@ -1,0 +1,75 @@
+/*------------------------------------------------------------*/
+/* 전체 중앙 정렬 및 레이아웃 설정 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/*------------------------------------------------------------*/
+/* 제목 스타일 */
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/*------------------------------------------------------------*/
+/* 두 개의 열 구역 설정 */
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.user-section, .panel-section {
+    width: 45%;
+}
+
+.user-section a, .panel-section a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    color: white;
+    background-color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.user-section a:hover, .panel-section a:hover {
+    background-color: #575757;
+}
+
+/*------------------------------------------------------------*/
+/* 홈화면으로 돌아가기 버튼 스타일 */
+.home-button {
+    margin-top: 20px;
+}
+
+.home-button a {
+    display: inline-block;
+    padding: 15px 30px;
+    color: white;
+    background-color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.home-button a:hover {
+    background-color: #575757;
+}

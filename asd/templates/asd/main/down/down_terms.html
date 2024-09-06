@@ -4,9 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이용약관</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'asd/main/down/down_terms.css' %}">
 </head>
 <body>
-    <a href="/">main</a>
-    이용약관입니다. 텍스트로 정리하면 됩니다.
+    <div class="container">
+        <header>
+            <h1>이용약관</h1>
+        </header>
+        
+        <section class="intro">
+            <p>본 약관은 본 사이트를 이용함에 있어 고객과 회사 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+        </section>
+
+        <section class="terms-section">
+            <h2>1. 목적</h2>
+            <p>본 약관은 회사가 제공하는 서비스를 이용함에 있어 고객의 권리 및 의무, 책임사항을 규정함을 목적으로 합니다.</p>
+        </section>
+
+        <section class="terms-section">
+            <h2>2. 정의</h2>
+            <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다:</p>
+            <ul>
+                <li>"서비스"라 함은 회사가 제공하는 모든 온라인 서비스를 의미합니다.</li>
+                <li>"회원"이라 함은 회사의 서비스에 접속하여 이 약관에 따라 회사와 이용계약을 체결하고 서비스를 이용하는 자를 의미합니다.</li>
+            </ul>
+        </section>
+
+        <section class="terms-section">
+            <h2>3. 약관의 게시 및 변경</h2>
+            <p>본 약관은 서비스 초기 화면에 게시되며, 법령의 변경이나 회사 정책에 따라 변경될 수 있습니다. 변경된 약관은 공지사항을 통해 고지됩니다.</p>
+        </section>
+
+        <section class="terms-section">
+            <h2>4. 서비스의 제공 및 변경</h2>
+            <p>회사는 다음과 같은 서비스를 제공합니다:</p>
+            <ul>
+                <li>온라인 콘텐츠 제공</li>
+                <li>기타 회사가 정하는 서비스</li>
+            </ul>
+            <p>회사는 필요에 따라 서비스의 내용을 변경할 수 있으며, 이러한 변경사항은 사전 고지됩니다.</p>
+        </section>
+
+        <section class="terms-section">
+            <h2>5. 서비스의 중단</h2>
+            <p>회사는 다음과 같은 사유가 발생한 경우 서비스 제공을 일시적으로 중단할 수 있습니다:</p>
+            <ul>
+                <li>설비 점검, 교체 또는 고장 등 운영상 불가피한 경우</li>
+                <li>천재지변 또는 국가비상사태 등 불가항력적인 사유가 발생한 경우</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>본 약관은 2024년 9월 1일부터 적용됩니다.</p>
+        </footer>
+    </div>
 </body>
 </html>

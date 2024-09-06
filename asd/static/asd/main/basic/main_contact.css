@@ -1,0 +1,53 @@
+/* 전체 화면을 위한 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 전체 화면 높이 */
+    margin: 0;
+    background-color: #f4f4f4; /* 배경색 */
+}
+
+/* 문의 내용 박스 스타일 */
+.container {
+    text-align: center;
+    background-color: #ffffff; /* 배경색 */
+    padding: 30px; /* 패딩 크기 증가 */
+    border-radius: 12px; /* 모서리 둥글기 증가 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 그림자 */
+    max-width: 600px; /* 최대 너비 설정 */
+    width: 90%; /* 반응형 너비 */
+}
+
+/* 제목 스타일 */
+h1 {
+    margin-bottom: 20px; /* 제목과 아래 텍스트 사이 간격 증가 */
+    font-size: 36px; /* 제목 글자 크기 증가 */
+}
+
+/* 텍스트 스타일 */
+p {
+    margin: 15px 0; /* 위아래 여백 증가 */
+    font-size: 20px; /* 텍스트 크기 증가 */
+}
+
+/* 아이콘 컨테이너 스타일 */
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* 아이콘 사이 간격 증가 */
+}
+
+/* 아이콘 스타일 */
+.icon {
+    width: 80px; /* 아이콘 박스 너비 증가 */
+    height: 80px; /* 아이콘 박스 높이 증가 */
+    background-color: #e0e0e0; /* 아이콘 박스 배경색 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* 모서리 둥글기 증가 */
+    font-size: 18px; /* 아이콘 글자 크기 증가 */
+    color: #333; /* 아이콘 글자 색상 */
+}

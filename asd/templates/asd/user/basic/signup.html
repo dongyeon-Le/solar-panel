@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>회원가입</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/user/basic/signup.css' %}">
 </head>
 <body>
-    <a href="/">main</a>
     <div class="signup-container">
         <h2>회원가입</h2>
-        <form action="/register/seller/action" method="POST" id="signupForm">
+        <form action="/register/" method="POST" id="signupForm">
+            {% csrf_token %}
             <div class="row">
                 <input type="text" id="id" name="id" placeholder="아이디" pattern="[a-z0-9]+" title="아이디는 소문자와 숫자만 가능합니다" autofocus>
                 <button type="button" onclick="dupIdCheck()">중복 확인</button>
             </div>
             <input type="password" id="password" name="pw" placeholder="비밀번호" required>
-            <br>
             <input type="password" id="confirmPassword" placeholder="비밀번호 확인" required>
-            <br>
             <input type="text" id="nm" name="nm" placeholder="이름" required>
             <div class="row">
                 <input type="email" id="email" name="email" placeholder="이메일" required>
@@ -35,7 +35,6 @@
                 <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
             </div>
             <input type="text" id="address_detail" name="address_detail" placeholder="상세주소" required>
-            <br>
             <button type="submit">가입하기</button>
         </form>
     </div>
@@ -49,6 +48,6 @@
                 }
             }).open();
         }
-    </script>   
+    </script>
 </body>
 </html>

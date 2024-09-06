@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/user/basic/login.css' %}">
 </head>
 <body>
     <a href="/">main</a>
@@ -15,8 +17,7 @@
     </form>
     <p>
         <a href="/signup">Sign Up</a>  <!-- 회원가입 버튼 -->
-        <a href="/find_id_pw">ID/PW 찾기</a>
+        <a href="/find">ID/PW 찾기</a>
     </p>
 </body>
 </html>
-

@@ -34,11 +34,12 @@ urlpatterns = [
     path('login/', views.login_view, name='로그인'),
     
     # 회원정보 찾기
+    path('find/', views.find_view, name='회원정보 찾기'),
     path('find_id/', views.find_id_view, name='아이디 찾기'),
     path('find_pw/', views.find_pw_view, name='비밀번호 찾기'),
     
     # 마이페이지 - 회원
-    path('mypage_mypage/', views.mypage_mypage_view, name='마이페이지 홈'),
+    path('mypage/', views.mypage_view, name='마이페이지'),
     path('search_user/', views.search_user_view, name='회원정보조회'),
     path('modify_user/', views.modify_user_view, name='회원정보수정'),
     

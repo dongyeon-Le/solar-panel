@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문의방법 및 QnA</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main_contact.css' %}">
 </head>
 <body>
-    <a href="/">main</a>
-    저희에게 문의할 이메일, 전화번호를 보여드릴게요.
+    <div class="container">
+        <h1>문의</h1>
+        <p>이메일: example@example.com</p>
+        <p>전화번호: 010-1234-5678</p>
+        <div class="icons">
+            <div class="icon" id="icon1">아이콘1</div>
+            <div class="icon" id="icon2">아이콘2</div>
+            <div class="icon" id="icon3">아이콘3</div>
+        </div>
+    </div>
 </body>
 </html>

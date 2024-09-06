@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'asd/mypage/user/mypage.css' %}">
+</head>
+<body>
+    <!-- 중앙 정렬을 위한 컨테이너 -->
+    <div class="container">
+        <!-- 제목 -->
+        <h1>마이페이지</h1>
+        
+        <!-- 두 개의 열로 나눈 구역 -->
+        <div class="main-content">
+            <!-- 사용자(회원) 구역 -->
+            <div class="user-section">
+                <h3>사용자(회원)</h3>
+                <a href="{% url '회원정보조회' %}">회원 정보 조회</a>
+                <a href="{% url '회원정보수정' %}">회원 정보 수정</a>
+            </div>
+
+            <!-- 태양광 패널 구역 -->
+            <div class="panel-section">
+                <h3>태양광 패널</h3>
+                <a href="{% url '패널정보조회' %}">패널 정보 조회</a>
+                <a href="{% url '패널정보수정' %}">패널 정보 수정</a>
+            </div>
+        </div>
+
+        <!-- 홈화면으로 돌아가기 버튼 -->
+        <div class="home-button">
+            <a href="{% url '메인페이지' %}">홈화면으로 돌아가기</a>
+        </div>
+    </div>
+</body>
+</html>

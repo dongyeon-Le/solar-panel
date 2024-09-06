@@ -1,12 +1,57 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>최근 접속한 서비스</title>
+    <title>최근 접속한 서비스들</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main_recent.css' %}">
 </head>
 <body>
-    <a href="/">main</a>
-    최근 접속했던 리스트들을 다시 쉽고 빠르게 조회해보세요.
+    <header>
+        <h1>최근 접속한 서비스들</h1>
+        <input type="text" placeholder="서비스 검색..." id="search">
+    </header>
+    <main>
+        <section id="services">
+            <!-- 카드 예시 -->
+            <div class="service-card">
+                <img src="{% static 'icons/icon1.png' %}" alt="Service 1" class="service-icon">
+                <h2>서비스 1</h2>
+                <p>마지막 방문: 2024-09-05</p>
+                <a href="service1_link" class="button">이동</a>
+            </div>
+            <div class="service-card">
+                <img src="{% static 'icons/icon2.png' %}" alt="Service 2" class="service-icon">
+                <h2>서비스 2</h2>
+                <p>마지막 방문: 2024-09-04</p>
+                <a href="service2_link" class="button">이동</a>
+            </div>
+            <div class="service-card">
+                <img src="{% static 'icons/icon3.png' %}" alt="Service 3" class="service-icon">
+                <h2>서비스 3</h2>
+                <p>마지막 방문: 2024-09-03</p>
+                <a href="service3_link" class="button">이동</a>
+            </div>
+            <!-- 추가 카드들 -->
+        </section>
+        <aside>
+            <label for="filter">필터:</label>
+            <select id="filter">
+                <option value="all">모두</option>
+                <option value="recent">최근 방문</option>
+                <option value="frequent">자주 방문</option>
+            </select>
+            <label for="sort">정렬:</label>
+            <select id="sort">
+                <option value="date">날짜</option>
+                <option value="name">이름</option>
+            </select>
+        </aside>
+    </main>
+    <footer>
+        <p>© 2024 Your Company. All rights reserved.</p>
+        <a href="/contact">문의하기</a>
+    </footer>
 </body>
 </html>
