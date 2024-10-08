@@ -1,72 +1,134 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="has-scroll-init has-scroll-smooth" data-scroll-direction="vertical">
 <head>
+    <title>태양광 패널 유지보수: Zero SOLAR</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="태양광 패널, 유지보수, 점검 기록, 에너지 관리">
+    <meta name="description" content="태양광 패널의 정보를 저장하고 점검 기록을 남겨 유지보수를 원활히 받을 수 있도록 돕는 플랫폼입니다.">
+    <meta property="og:title" content="태양광 패널 유지보수">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="태양광 패널의 정보를 저장하고 점검 기록을 남겨 유지보수를 원활히 받을 수 있도록 돕는 플랫폼입니다.">
     <title>홈페이지</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js 추가 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 </head>
 <body>
-    <!-- 상단 -->
-    <div class="navbar">
-        <div class="left-menu">
-            <a href="{% url '메인페이지' %}">메인화면</a>
-        </div>
-        <div class="right-menu">
-            <a href="{% url '로그인' %}">로그인/회원가입</a>
-        </div>
-    </div>
+    {% comment %} <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var introImage = document.querySelector('.intro-image');
+        
+            setTimeout(function () {
+                introImage.classList.add('animate');
+                setTimeout(function () {
+                    introImage.style.display = 'none';
+                }, 2000);
+            }, 1000);
+        });
+    </script>        
+    <div class="intro-image">
+        <img src="{% static 'images/logo_black.png' %}" alt="접속 이미지">
+    </div> {% endcomment %}
 
+<!-- 상단바 -->
+<div class="navbar">
+        <a href="{% url '메인페이지' %}">
+            <img src="{% static 'images/logo_black.png' %}" alt="대표사진">
+        </a>
     <div class="top-navbar">
-        <a href="{% url '메인 목록1' %}">메인목록1</a>
-        <a href="{% url '메인 목록2' %}">메인목록2</a>
-        <a href="{% url '메인 목록3' %}">메인목록3</a>
-        <a href="{% url '메인 목록4' %}">메인목록4</a>
-        <a href="{% url '메인 목록5' %}">메인목록5</a>
+        <div class="navbar-item">
+            <a href="{% url '메인 목록1' %}">사용안내</a>
+            <div class="submenu">
+                <a href="{% url '메인페이지' %}">서비스 개요</a>
+                <a href="{% url '메인페이지' %}">사용자 가이드</a>
+                <a href="{% url '메인페이지' %}">해결 과정</a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <a href="{% url '메인 목록2' %}">원인진단</a>
+            <div class="submenu">
+                <a href="{% url '메인페이지' %}">패널 손상 자가진단</a>
+                <a href="{% url '메인페이지' %}">시스템 검사</a>
+                <a href="{% url '메인페이지' %}">원인 유형</a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <a href="{% url '메인 목록3' %}">유지보수</a>
+            <div class="submenu">
+                <a href="{% url '메인페이지' %}">정기점검</a>
+                <a href="{% url '메인페이지' %}">부품 교체</a>
+                <a href="{% url '메인페이지' %}">청소 및 관리</a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <a href="{% url '메인 목록4' %}">패널위치</a>
+            <div class="submenu">
+                <a href="{% url '메인페이지' %}">내 위치 확인</a>
+                <a href="{% url '메인페이지' %}">설치 위치 최적화</a>
+                <a href="{% url '메인페이지' %}">패널 정보 더보기</a>
+            </div>
+        </div>
+        <div class="navbar-item">
+            <a href="{% url '메인 목록5' %}">정보비교</a>
+            <div class="submenu">
+                <a href="{% url '메인페이지' %}">성능비교</a>
+                <a href="{% url '메인페이지' %}">주위 공공기관과의 비교</a>
+                <a href="{% url '메인페이지' %}">제품 별 비교</a>
+            </div>
+        </div>
     </div>
+</div>
+    
 
     <!-- 중앙 -->
     <div class="content">
+        <!-- 웰컴 메시지와 아이콘 -->
+        <div class="welcome-message">
+            <p>{{ user.UserName }}님, 환영합니다!</p>
+            <img src="https://cdn-icons-png.freepik.com/512/1400/1400310.png" alt="환영 아이콘" class="welcome-icon">
+        </div>
         <div class="image-box">
-            <p>여기에 나중에 대표사진이 들어갑니다.</p>
+            <a href="{% url '메인페이지' %}">
+                <img src="{% static 'images/logo_black.png' %}" alt="대표사진">
+            </a>
         </div>        
-        <h1>홈페이지 화면 제목입니다.</h1>
-        <p>세부설명을 기재해주세요.</p>
-
+        <h1>'제로솔라'와 함께 발전량을 확인해보세요</h1>
+        <p>안녕하세요. 2024년 9월부터 시작한 서비스입니다. 이것저것 만들어봐야합니다.</p>
+        <br>
         <!-- 1) 모아보기 구역 -->
         <div class="info-section">
             <!-- 구역1 -->
-            <div class="info-item-1">
-                <h2>1. 전력 사용량</h2>
-                <p>사용량을 그래프, 표로 시각화해주세요.</p>
-                <canvas id="barChart" class="chart"></canvas>
-                <canvas id="doughnutChart" class="chart"></canvas>
-            </div>
-            <!-- 구역2 -->
-            <!-- 기존 코드 -->
-            <div class="info-item-2">
-                <h2>2. 공지사항</h2>
-                <p>공지사항(알림/이벤트)를 2열로 표시합니다.</p>
+            <!-- 구역1 -->
+        <div class="info-item-1">
+            <h2>전력 사용량</h2>
+            <p>{{ user.UserName }}님 지역의 <strong>월 평균</strong> 전력 사용량입니다.</p>
+            <canvas id="barChart" class="chart"></canvas>
+        </div>
 
-                <!-- 새로 추가된 공지사항 부분 -->
+            <!-- 구역2 -->
+            <div class="info-item-2">
+                <h2>공지사항</h2>
+                <p>최근 공지사항 내용을 모아봅니다.</p>
+
                 <div class="notice-board">
                     <!-- 알림 열 -->
                     <div class="notice-column">
                         <h3>알림</h3>
                         <ul>
                             <li>
-                                <strong>알림 제목 1</strong>
-                                <p>알림 내용이 여기에 들어갑니다. 예를 들어, 중요한 시스템 점검이나 공지사항 등.</p>
+                                <a href="/notice/1" class="notice-link">
+                                    <strong>알림 1</strong>
+                                    <p>[시스템 점검안내] 9/29 점검예정</p>
+                                </a>
                             </li>
                             <li>
-                                <strong>알림 제목 2</strong>
-                                <p>또 다른 알림 내용이 여기에 들어갑니다. 더 많은 정보는 링크를 통해 확인해 주세요.</p>
-                            </li>
-                            <li>
-                                <strong>알림 제목 3</strong>
-                                <p>추가 알림 내용입니다. 이 내용은 예시일 뿐이며, 실제 공지사항으로 대체될 수 있습니다.</p>
+                                <a href="/notice/2" class="notice-link">
+                                    <strong>알림 2</strong>
+                                    <p>[공지] 패널 변경 수칙에 대한 안내</p>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -79,16 +141,16 @@
                         <h3>이벤트</h3>
                         <ul>
                             <li>
-                                <strong>이벤트 제목 1</strong>
-                                <p>이벤트 내용이 여기에 들어갑니다. 예를 들어, 특별한 할인 행사나 참여 이벤트 등.</p>
+                                <a href="/event/1" class="notice-link">
+                                    <strong>이벤트1</strong>
+                                    <p>내 주변 발전량은? 검색 이벤트</p>
+                                </a>
                             </li>
                             <li>
-                                <strong>이벤트 제목 2</strong>
-                                <p>다른 이벤트 내용이 여기에 들어갑니다. 이벤트에 대한 자세한 내용은 링크를 통해 확인해 주세요.</p>
-                            </li>
-                            <li>
-                                <strong>이벤트 제목 3</strong>
-                                <p>추가 이벤트 내용입니다. 실제 이벤트 내용으로 대체될 수 있습니다.</p>
+                                <a href="/event/2" class="notice-link">
+                                    <strong>이벤트2</strong>
+                                    <p>신규회원 대상 이벤트 개최</p>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -97,83 +159,163 @@
 
             <!-- 구역3 -->
             <div class="info-item-3">
-                <h2>3. 로그인 바로하기</h2>
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">로그인</button>
-                </form>
-                <p>
-                    <a href="{% url '회원가입' %}">회원가입</a>
-                </p>
+                <h2>로그인 바로하기</h2>
+                {% if user.is_authenticated %}
+                <br>
+                    <span><strong>{{ user.UserName }}</strong>님 환영합니다!</span>
+                    <br>
+                    <!-- 발전량 입력 박스 -->
+                        <div class="button-row">
+                            <a href="{% url '유지보수 서비스' %}" class="btn btn-primary">진단하기</a>
+                        </div>
+
+                    <br>
+                    <br>
+                    <a href="{% url '로그아웃' %}">로그아웃</a>
+                {% else %}
+                    <form action="{% url '로그인' %}" method="POST">
+                        {% csrf_token %}
+                        <div>
+                            <label for="UserId">아이디</label>
+                            <input type="text" id="UserId" name="UserId" required>
+                        </div>
+                        <div>
+                            <label for="UserPassword">비밀번호</label>
+                            <input type="password" id="UserPassword" name="UserPassword" required>
+                        </div>
+                        <button type="submit">로그인</button>
+                        {% if form.errors %}
+                        <div class="error-message">
+                            {{ form.errors }}
+                        </div>
+                        {% endif %}
+                    </form>
+                    <p>
+                        <a href="{% url '회원가입' %}">회원가입</a>
+                        <a href="{% url '회원정보 찾기' %}" class="find-button">아이디/비밀번호 찾기</a>
+                    </p>
+                {% endif %}
             </div>
         </div>
 
-        <!-- 2) 즐겨찾기 -->
-        <div class="bookmark">
-            <h2>즐겨찾기한 서비스로 이동할 수 있습니다.</h2>
-            <div class="bookmark-list">
-                <div class="bookmark-item">
-                    <h3>즐겨찾기 1</h3>
-                    <div class="image-box">
-                        <p>이미지</p>
-                    </div> 
-                    <p>즐겨찾기1에 대한 세부 내용을 간단히 적어주세요.</p>
-                    <a href="{% url '즐겨찾기 1' %}">즐겨찾기1 이동버튼</a>
-                </div>
-                <div class="bookmark-item">
-                    <h3>즐겨찾기 2</h3>
-                    <div class="image-box">
-                        <p>이미지</p>
-                    </div> 
-                    <p>즐겨찾기2에 대한 세부 내용을 간단히 적어주세요.</p>
-                    <a href="{% url '즐겨찾기 2' %}">즐겨찾기2 이동버튼</a>
-                </div>
-                <div class="bookmark-item">
-                    <h3>즐겨찾기 3</h3>
-                    <div class="image-box">
-                        <p>이미지</p>
-                    </div> 
-                    <p>즐겨찾기3에 대한 세부 내용을 간단히 적어주세요.</p>
-                    <a href="{% url '즐겨찾기 3' %}">즐겨찾기3 이동버튼</a>
-                </div>
+        {% if result %}
+    <div class="map-data-container">
+        <div class="map-data-map-container">
+            <h1>가까운 공공기관 위치</h1>
+            <div id="map">
+                {{ result|safe }}
             </div>
         </div>
-
-        <!-- 바로가기 메뉴 -->
-        <div class="fixed-menu">
-            <a href="{% url '마이페이지' %}">마이 페이지</a>
-            <a href="{% url '최근접속' %}">최근 접속</a>
-            <a href="{% url '문의방법' %}">문의 방법</a>
-            <div class="top-bottom-buttons">
-                <a href="#" onclick="scrollToTop()">top</a>
-                <a href="#" onclick="scrollToBottom()">down</a>
-            </div>
+        <div class="map-data-facilities-container">
+            <h1>가장 가까운 5개 공공시설</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>순번</th>
+                        <th>capacity</th>
+                        <th>address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ 1 }}</td>
+                        <td>{{ capacity.0 }}</td>
+                        <td>{{ address.0 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 2 }}</td>
+                        <td>{{ capacity.1 }}</td>
+                        <td>{{ address.1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 3 }}</td>
+                        <td>{{ capacity.2 }}</td>
+                        <td>{{ address.2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 4 }}</td>
+                        <td>{{ capacity.3 }}</td>
+                        <td>{{ address.3 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ 5 }}</td>
+                        <td>{{ capacity.4 }}</td>
+                        <td>{{ address.4 }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+{% else %}
+    <p>패널 정보가 없습니다.</p>
+{% endif %}
+
+
+    
+
+        <!-- 바로가기 메뉴 -->
+        <!-- 메뉴 접기 버튼 -->
+        <button class="toggle-btn" id="toggleMenuBtn">
+            <img src="https://super.so/icon/dark/align-right.svg" alt="메뉴 열기/닫기">
+        </button>
+
+        <div class="fixed-menu" id="fixedMenu">
+            <div class="menu-header">Quick</div>
+            <a href="/mypage" class="menu-item" data-label="마이페이지">
+                <img src="https://img.icons8.com/ios/250/FFFFFF/podium-with-speaker.png" alt="마이페이지">
+                <span class="menu-text">마이페이지</span>
+            </a>
+        </div>
+        
+
+
+
 
     <!-- 하단 메뉴 -->
     <footer>
-        <a href="{% url '개인정보 처리방침' %}">개인정보 처리 방침</a>
+        <a href="{% url '개인정보 처리방침' %}">개인정보 처리방침</a>
         <a href="{% url '이용약관' %}">이용약관</a>
         <a href="{% url '사이트맵' %}">사이트맵</a>
-        <div class="footer-email">
-            E-mail: asdfasdf@asd.co.kr
-        </div>
     </footer>
-
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="https://ethics.lg.co.kr/ethics/ko/util/LGSites.jsp"><span>문의하기</span></a></li>
+                    <li><a href="https://www.history.go.kr/contents/contentsPage.do;jsessionid=54ACE2C6BF4190D8E5E115251F7FE02F?groupId=000000000571&menuId=000000000572&pageId=000000000211"><span>개인정보처리방침</span></a></li>
+                    <li><a href="https://www.history.go.kr/contents/contentsPage.do?groupId=000000000571&menuId=000000000575&pageId=000000000214" class="footer_email"><span>이메일무단수집거부</span></a></li>
+                    <li><a href="https://ethics.lg.co.kr/index.do" target="_blank"><span>정도경영 사이버신문고</span></a></li>
+                    <li><a href="https://ethics.lg.co.kr/realName/insertDetailForm.do" target="_blank"><span>협력사 상생고</span></a></li>
+                    <li><a href="https://guest.samsungdisplay.com/co/gd/COGD001.do"><span>협력사 등록</span></a></li>
+                </ul>
+            </div>
+            <div class="company-info">
+                <p>
+                    <span>대표이사: Electronics Kim</span> <span class="split">|</span>
+                    <span>01234 광주광역시 광산구 소촌로152번길 37</span> <span class="split">|</span>
+                    <span>대표번호 062-940-3000</span>
+                </p>
+                <br>
+                <p>
+                    <span class="copy">© KEPCO KDT 2024 Team ZeroSolar. All Rights Reserved</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // 막대형 그래프 설정
-        const barCtx = document.getElementById('barChart').getContext('2d');
+       const graphData = JSON.parse('{{ graph|safe }}');
+       const barCtx = document.getElementById('barChart').getContext('2d');
+
         new Chart(barCtx, {
             type: 'bar',
             data: {
-                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                 datasets: [{
                     label: '전력 사용량 (kWh)',
-                    data: [12, 19, 3, 5, 2, 3, 10],
-                    backgroundColor: 'rgba(0, 0, 0, 0.2)', // 회색 음영
-                    borderColor: 'rgba(0, 0, 0, 1)', // 검정색
+                    data: graphData,
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
                     borderWidth: 1
                 }]
             },
@@ -186,43 +328,40 @@
             }
         });
 
-
-        // 도넛형 그래프 설정
-        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
-        new Chart(doughnutCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['주거용', '상업용', '산업용'],
-                datasets: [{
-                    label: '전력 소비 비율',
-                    data: [40, 30, 30],
-                    backgroundColor: [
-                        'rgba(0, 0, 0, 0.2)', // 회색 음영 1
-                        'rgba(0, 0, 0, 0.4)', // 회색 음영 2
-                        'rgba(0, 0, 0, 0.6)'  // 회색 음영 3
-                    ],
-                    borderColor: [
-                        'rgba(0, 0, 0, 1)', // 검정색
-                        'rgba(0, 0, 0, 1)', // 검정색
-                        'rgba(0, 0, 0, 1)'  // 검정색
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
-
-
-        // 페이지 이동-최상단
+        
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        // 페이지 이동-최하단
         function scrollToBottom() {
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
+        const fixedMenu = document.getElementById('fixedMenu');
+        const toggleMenuBtn = document.getElementById('toggleMenuBtn');
+        
+        toggleMenuBtn.addEventListener('click', function () {
+            if (fixedMenu.style.right === '0px' || fixedMenu.style.right === '') {
+                fixedMenu.style.right = '-300px'; // 메뉴를 숨김 (오른쪽으로 300px 이동)
+            } else {
+                fixedMenu.style.right = '0px'; // 메뉴를 보여줌
+            }
+        });    
+        let lastScrollTop = 0; // 마지막 스크롤 위치를 저장
+        const toggleBtn = document.querySelector('.toggle-btn'); // 버튼을 선택
+        
+        window.addEventListener('scroll', function() {
+            let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+            if (currentScrollTop > lastScrollTop) {
+                // 스크롤이 아래로 내려가면 버튼 숨기기
+                toggleBtn.style.opacity = '0';
+            } else {
+                // 스크롤이 위로 올라가면 버튼 보이기
+                toggleBtn.style.opacity = '1';
+            }
+            
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // 스크롤 위치 업데이트
+        });
+           
     </script>
 </body>
 </html>

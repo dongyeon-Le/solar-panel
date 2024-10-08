@@ -6,6 +6,9 @@
     <title>최근 접속한 서비스들</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main_recent.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
@@ -14,44 +17,137 @@
     </header>
     <main>
         <section id="services">
-            <!-- 카드 예시 -->
-            <div class="service-card">
-                <img src="{% static 'icons/icon1.png' %}" alt="Service 1" class="service-icon">
-                <h2>서비스 1</h2>
-                <p>마지막 방문: 2024-09-05</p>
-                <a href="service1_link" class="button">이동</a>
-            </div>
-            <div class="service-card">
-                <img src="{% static 'icons/icon2.png' %}" alt="Service 2" class="service-icon">
-                <h2>서비스 2</h2>
-                <p>마지막 방문: 2024-09-04</p>
-                <a href="service2_link" class="button">이동</a>
-            </div>
-            <div class="service-card">
-                <img src="{% static 'icons/icon3.png' %}" alt="Service 3" class="service-icon">
-                <h2>서비스 3</h2>
-                <p>마지막 방문: 2024-09-03</p>
-                <a href="service3_link" class="button">이동</a>
-            </div>
-            <!-- 추가 카드들 -->
         </section>
         <aside>
-            <label for="filter">필터:</label>
-            <select id="filter">
-                <option value="all">모두</option>
-                <option value="recent">최근 방문</option>
-                <option value="frequent">자주 방문</option>
-            </select>
-            <label for="sort">정렬:</label>
-            <select id="sort">
-                <option value="date">날짜</option>
-                <option value="name">이름</option>
-            </select>
+            <p>정렬:</p>
+            <a href="#" id="sort-asc">오름차순 (날짜 기준)</a>
+            <a href="#" id="sort-desc">내림차순 (날짜 기준)</a>
         </aside>
     </main>
     <footer>
         <p>© 2024 Your Company. All rights reserved.</p>
         <a href="/contact">문의하기</a>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 서비스 목록 초기화
+            const serviceList = [
+                { id: '1', name: '서비스 1', date: '2024-09-05', link: 'service1_link', icon: '{% static "icons/icon1.png" %}' },
+                { id: '2', name: '서비스 2', date: '2024-09-04', link: 'service2_link', icon: '{% static "icons/icon2.png" %}' },
+                { id: '3', name: '서비스 3', date: '2024-09-03', link: 'service3_link', icon: '{% static "icons/icon3.png" %}' }
+            ];
+    
+            // 서비스 목록을 페이지에 로드
+            function loadServices() {
+                const section = document.getElementById('services');
+                section.innerHTML = '';
+                serviceList.forEach(service => {
+                    const card = document.createElement('div');
+                    card.className = 'service-card';
+                    card.innerHTML = `
+                        <img src="${service.icon}" alt="${service.name}" class="service-icon">
+                        <h2>${service.name}</h2>
+                        <p>마지막 방문: ${service.date}</p>
+                        <a href="${service.link}" class="button">이동</a>
+                    `;
+                    section.appendChild(card);
+                });
+            }
+    
+            // 로컬 스토리지에 최근 접속 서비스 저장
+            function updateLocalStorage(serviceId) {
+                const recentServices = JSON.parse(localStorage.getItem('recentServices')) || [];
+                const service = serviceList.find(s => s.id === serviceId);
+                if (service) {
+                    // 이미 존재하는 서비스는 제거
+                    const index = recentServices.findIndex(s => s.id === serviceId);
+                    if (index !== -1) {
+                        recentServices.splice(index, 1);
+                    }
+                    // 서비스 추가
+                    recentServices.unshift(service);
+                    // 최근 10개까지만 유지
+                    if (recentServices.length > 10) {
+                        recentServices.pop();
+                    }
+                    localStorage.setItem('recentServices', JSON.stringify(recentServices));
+                }
+            }
+    
+            // 로컬 스토리지에서 최근 접속 서비스 표시
+            function displayRecentServices() {
+                const recentServices = JSON.parse(localStorage.getItem('recentServices')) || [];
+                const section = document.getElementById('services');
+                section.innerHTML = '';
+                recentServices.forEach(service => {
+                    const card = document.createElement('div');
+                    card.className = 'service-card';
+                    card.innerHTML = `
+                        <img src="${service.icon}" alt="${service.name}" class="service-icon">
+                        <h2>${service.name}</h2>
+                        <p>마지막 방문: ${service.date}</p>
+                        <a href="${service.link}" class="button">이동</a>
+                    `;
+                    section.appendChild(card);
+                });
+            }
+    
+            // 서비스 목록과 최근 접속 서비스 로드
+            loadServices();
+            displayRecentServices();
+    
+            // 각 서비스 카드 클릭 시 로컬 스토리지 업데이트
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const serviceId = this.querySelector('h2').textContent.split(' ')[1];
+                    updateLocalStorage(serviceId);
+                });
+            });
+    
+            // 서비스 목록을 날짜 기준으로 정렬하고 표시
+            function sortServices(order) {
+                const sortedServices = [...serviceList].sort((a, b) => {
+                    if (order === 'asc') {
+                        return new Date(a.date) - new Date(b.date);
+                    } else {
+                        return new Date(b.date) - new Date(a.date);
+                    }
+                });
+                renderServices(sortedServices);
+            }
+    
+            // 서비스 카드를 페이지에 렌더링
+            function renderServices(services) {
+                const servicesContainer = document.getElementById('services');
+                servicesContainer.innerHTML = '';
+                services.forEach(service => {
+                    const serviceCard = document.createElement('div');
+                    serviceCard.className = 'service-card';
+                    serviceCard.innerHTML = `
+                        <img src="${service.icon}" alt="${service.name}" class="service-icon">
+                        <h2>${service.name}</h2>
+                        <p>마지막 방문: ${service.date}</p>
+                        <a href="${service.link}" class="button">이동</a>
+                    `;
+                    servicesContainer.appendChild(serviceCard);
+                });
+            }
+    
+            // 정렬 버튼 클릭 이벤트 핸들러
+            document.getElementById('sort-asc').addEventListener('click', function(e) {
+                e.preventDefault();
+                sortServices('asc');
+            });
+    
+            document.getElementById('sort-desc').addEventListener('click', function(e) {
+                e.preventDefault();
+                sortServices('desc');
+            });
+    
+            // 초기 렌더링
+            renderServices(serviceList);
+        });
+    </script>
+    
 </body>
 </html>

@@ -1,0 +1,100 @@
+/* 기본 설정 */
+body {
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* 페이지 제목 */
+h1 {
+    text-align: center;
+    color: #000;
+    margin-top: 20px;
+    font-size: 30px; /* 페이지 제목 크기 조정 */
+}
+
+/* 폼 */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 강화 */
+    text-align: center; /* 폼 내부 콘텐츠 중앙 정렬 */
+}
+
+/* 입력 필드 */
+input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard 폰트 적용 */
+    font-size: 16px; /* 입력 필드 폰트 크기 조정 */
+}
+
+/* 레이블 */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 16px; /* 레이블 폰트 크기 조정 */
+}
+
+/* 버튼 */
+button {
+    background: linear-gradient(to bottom, #8a8a8a, #bcbcbc); /* 은은한 짙은 회색 그라데이션 */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background 0.3s ease, transform 0.3s ease; /* 버튼 호버 효과 추가 */
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard 폰트 적용 */
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #b7b7b7, #d2d2d2); /* 호버 시 그라데이션 색상 변경 */
+    transform: scale(1.05); /* 살짝 확대되는 효과 추가 */
+}
+
+/* 제출 버튼 스타일 */
+form button[type="submit"] {
+    background: linear-gradient(to bottom, #7f7f7f, #606060); /* 은은한 짙은 회색 그라데이션 */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard 폰트 적용 */
+}
+
+form button[type="submit"]:hover {
+    background: linear-gradient(to bottom, #5a5a5a, #3e3e3e); /* 호버 시 그라데이션 색상 변경 */
+    transform: scale(1.05); /* 살짝 확대되는 효과 추가 */
+}
+
+/* 링크 */
+a {
+    color: #007BFF; /* 링크 색상 */
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin: 20px;
+    font-size: 16px;
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard 폰트 적용 */
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* 호버 시 링크 색상 변경 */
+}

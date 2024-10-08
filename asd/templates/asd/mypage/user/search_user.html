@@ -4,8 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보조회</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/mypage/user/search_user.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 </head>
 <body>
-    <p>가입하신 정보를 확인할 수 있습니다.</p>
+    <!-- 뒤로가기 링크 -->
+    <a href="/mypage">뒤로가기</a>
+    <div class="container">
+        <p>가입하신 정보를 확인할 수 있습니다.</p>
+        
+        <!-- 사용자 정보 표시 -->
+        {% if user.is_authenticated %}
+            <h2>회원정보</h2>
+        <!-- 리스트 항목 -->
+        <ul>
+            <li><a href="#" onclick="showEditPopup('아이디')">아이디: {{ user.UserId }}</a></li>
+            <li><a href="#" onclick="showEditPopup('이름')">이름: {{ user.UserName }}</a></li>
+            <li><a href="#" onclick="showEditPopup('이메일')">이메일: {{ user.UserEmail }}</a></li>
+            <li><a href="#" onclick="showEditPopup('전화번호')">전화번호: {{ user.UserPhone }}</a></li>
+            <li><a href="#" onclick="showEditPopup('주소')">주소: {{ user.UserAddress }}</a></li>
+            <li><a href="#" onclick="showEditPopup('상세주소')">상세주소: {{ user.UserAddress_detail }}</a></li>
+        </ul>         
+        {% else %}
+            <p class="login-info">로그인 후 이용 가능합니다.</p>
+        {% endif %}
+
+        <!-- 팝업 영역 -->
+        <div id="confirm-edit-popup" class="overlay">
+            <div class="popup">
+                <span class="close-btn" onclick="closeEditPopup()">&times;</span>
+                <p id="popup-message"><strong>회원정보</strong>를 <strong>수정</strong>하시겠습니까?</p>
+                <a id="edit-link" href="#">예</a>
+                <a href="#" onclick="closeEditPopup()">아니요</a>
+            </div>
+        </div>
+
+        <!-- 수정 불가능 항목 팝업 -->
+        <div id="no-edit-popup" class="overlay">
+            <div class="popup">
+                <span class="close-btn" onclick="closeNoEditPopup()">&times;</span>
+                <p>해당 항목은 수정할 수 없습니다.</p>
+                <a href="#" onclick="closeNoEditPopup()">확인</a>
+            </div>
+        </div>
+
 </body>
+<script>
+    function showEditPopup(field) {
+        // 아이디와 이름은 수정 불가
+        if (field === '아이디' || field === '이름') {
+            document.getElementById('no-edit-popup').style.display = 'flex';
+            return;
+        }
+    
+        // 수정 가능한 항목에 대해 팝업 메시지 동적 변경
+        let popupMessage = document.getElementById('popup-message');
+        popupMessage.innerHTML = `<strong>${field}</strong>을(를) <strong>수정</strong>하시겠습니까?`;
+    
+        // 회원정보수정 페이지의 링크 수정 (필요한 경우 각 항목에 맞는 URL로 설정)
+        let editLink = document.getElementById('edit-link');
+        editLink.href = `{% url '회원정보수정' %}?field=${field}`;  // Django에서 URL 파라미터로 처리
+    
+        // 팝업 표시
+        document.getElementById('confirm-edit-popup').style.display = 'flex';
+    }
+    
+    function closeEditPopup() {
+        document.getElementById('confirm-edit-popup').style.display = 'none';
+    }
+    
+    function closeNoEditPopup() {
+        document.getElementById('no-edit-popup').style.display = 'none';
+    }
+</script>
+        
 </html>

@@ -1,12 +1,141 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="has-scroll-init has-scroll-smooth" data-scroll-direction="vertical">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인리스트2</title>
+    <title>메인리스트 1</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 </head>
 <body>
-    <a href="/">main</a>
-    메인화면에 있는 서비스 리스트 중 2번의 화면입니다.
+    <!-- 상단바 -->
+    <div class="navbar">
+            <a href="{% url '메인페이지' %}">
+                <img src="{% static 'images/logo_black.png' %}" alt="대표사진">
+            </a>
+        <div class="top-navbar">
+            <div class="navbar-item">
+                <a href="{% url '메인 목록1' %}">사용안내</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">서비스 개요</a>
+                    <a href="{% url '메인페이지' %}">사용자 가이드</a>
+                    <a href="{% url '메인페이지' %}">해결 과정</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록2' %}">원인진단</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">패널 손상 자가진단</a>
+                    <a href="{% url '메인페이지' %}">시스템 검사</a>
+                    <a href="{% url '메인페이지' %}">원인 유형</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록3' %}">유지보수</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">정기점검</a>
+                    <a href="{% url '메인페이지' %}">부품 교체</a>
+                    <a href="{% url '메인페이지' %}">청소 및 관리</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록4' %}">패널위치</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">내 위치 확인</a>
+                    <a href="{% url '메인페이지' %}">설치 위치 최적화</a>
+                    <a href="{% url '메인페이지' %}">패널 정보 더보기</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록5' %}">정보비교</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">성능비교</a>
+                    <a href="{% url '메인페이지' %}">주위 공공기관과의 비교</a>
+                    <a href="{% url '메인페이지' %}">제품 별 비교</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <section id="main_list_2_overview">
+            <br>
+            <h2>고장 원인 분석</h2>
+            <br>
+            <p>태양광 패널의 전력 효율 저하 원인을 진단하고, 이를 기반으로 개선 방안을 제시합니다.</p>
+            <br>
+        </section>        
+        <section id="main_list_2_features" class="card">
+            <h2>주요 기능</h2>
+            <div class="custom-divider">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <br>
+            <div class="main_list_2_f-pattern">
+                <div class="main_list_2_feature">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH00qrqQUMKG8aymKyQ2OZG2RCLChknSaiAA&s" alt="아이콘">
+                    <div>
+                        <h3>전력 효율 저하 원인 분석</h3>
+                        <p>패널의 전력 효율 저하 원인을 분석합니다.</p>
+                    </div>
+                </div>
+                <div class="main_list_2_feature">
+                    <img src="https://lh3.googleusercontent.com/proxy/NTHmZsuIO_XlioyM52LQtVe7B6L3_IOuSgC_lo2QpMR2Eiw23T06F6oVI3QwoTYieO4S2cV10gY7GJLLXsXm_qALdbq5WlyNCyf3TtkJ" alt="아이콘">
+                    <div>
+                        <h3>진단 리포트 제공</h3>
+                        <p>상세한 진단 결과 리포트를 제공합니다.</p>
+                    </div>
+                </div>
+                <div class="main_list_2_feature">
+                    <img src="https://pimg.mk.co.kr/meet/neds/2022/04/image_readtop_2022_379660_16511920285026011.jpg" alt="아이콘">
+                    <div>
+                        <h3>해결책 추천</h3>
+                        <p>진단결과를 바탕으로 해결책을 추천합니다.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="company-info">
+            <p>
+                <span class="copy">© KEPCO KDT 2024 Team ZeroSolar. All Rights Reserved</span>
+            </p>
+        </div>    
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                datasets: [{
+                    label: '전력 사용량 (kWh)',
+                    data: [12, 19, 3, 5, 2, 3, 10],
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

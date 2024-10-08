@@ -1,0 +1,33 @@
+password_reset_complete.html
+>> 비밀번호 재설정이 성공했을때 뜨는 페이지
+
+
+
+password_reset_confirm.html
+>> 새로운 비밀번호 입력 페이지
+
+
+
+password_reset_done.html
+>> 비밀번호 재설정 링크 보냈다는 안내문구
+
+
+
+password_reset_email.html
+>> 이메일 내용
+
+
+
+password_reset_form.html
+>> 이메일을 입력받는 페이지
+
+
+
+password_reset_subject.txt
+>> 이메일 제목
+
+
+
+
+password_reset_complete.html
+>> 비밀번호 재설정이 성공했을때 뜨는 페이지

@@ -5,35 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'asd/mypage/user/mypage.css' %}">
+    <link rel="stylesheet" href="{% static 'asd/mypage/user/mypage_mypage.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    
 </head>
 <body>
+    <br>
+    <!-- 상단 링크 -->
+    <a class="top-link" href="/">
+        <img src="https://super.so/icon/dark/home.svg" alt="메인페이지로 돌아가기" class="logo-icon">
+    </a>
     <!-- 중앙 정렬을 위한 컨테이너 -->
     <div class="container">
         <!-- 제목 -->
         <h1>마이페이지</h1>
-        
+        <br>
+        <div class="profile">
+            <img src="https://img.icons8.com/ios/250/000000/user.png" alt="프로필 사진" class="profile-pic">
+            <span><strong>{{ user.UserName }}</strong>님 환영합니다!</span>
+            <hr>
+        </div>
         <!-- 두 개의 열로 나눈 구역 -->
         <div class="main-content">
             <!-- 사용자(회원) 구역 -->
             <div class="user-section">
                 <h3>사용자(회원)</h3>
-                <a href="{% url '회원정보조회' %}">회원 정보 조회</a>
-                <a href="{% url '회원정보수정' %}">회원 정보 수정</a>
+                <a href="{% url '회원정보조회' %}">회원정보 조회</a>
+                <button onclick="document.getElementById('confirm-edit-popup').style.display='block'">회원정보 수정</button> <!-- 수정 버튼을 클릭하면 팝업을 띄우도록 설정 -->
             </div>
-
             <!-- 태양광 패널 구역 -->
             <div class="panel-section">
                 <h3>태양광 패널</h3>
-                <a href="{% url '패널정보조회' %}">패널 정보 조회</a>
-                <a href="{% url '패널정보수정' %}">패널 정보 수정</a>
+                <!-- 패널 정보가 있는지 확인 -->
+                {% if panel_exists %}
+                    <!-- 패널 정보가 있을 때 보이는 링크들 -->
+                    <a href="{% url '패널정보 조회' %}">패널정보 조회</a>
+                    <a href="{% url '패널정보 수정' panel.id %}">패널정보 수정</a>
+                    <a href="{% url '패널정보 삭제' panel.id %}">패널정보 삭제</a>
+                {% else %}
+                    <!-- 패널 정보가 없을 때 보이는 링크들 -->
+                    <a href="{% url '패널정보 입력' %}">패널정보 입력</a>
+                    <a href="{% url '패널정보 조회' %}">패널정보 조회</a>
+                {% endif %}
             </div>
         </div>
 
-        <!-- 홈화면으로 돌아가기 버튼 -->
-        <div class="home-button">
-            <a href="{% url '메인페이지' %}">홈화면으로 돌아가기</a>
+        <!-- 팝업 영역 -->
+        <div id="confirm-edit-popup" class="overlay">
+            <div class="popup">
+                <span class="close-btn" onclick="document.getElementById('confirm-edit-popup').style.display='none'">&times;</span>
+                <p><strong>회원정보</strong>를 <strong>수정</strong>하시겠습니까?</p>
+                <a href="{% url '회원정보수정' %}">예</a>
+                <a href="#" onclick="document.getElementById('confirm-edit-popup').style.display='none'">아니요</a>
+            </div>
         </div>
+    </div>
+    <div class="bottom-banner">
+        <p>© 2024 Zero Solar. All rights reserved.</p>
     </div>
 </body>
 </html>

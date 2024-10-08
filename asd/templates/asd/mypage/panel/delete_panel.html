@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+    <title>Document</title>
+
+</head>
+<body>
+    <form action="{% url '패널정보 삭제' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">모든 패널 정보 삭제</button>
+    </form>    
+</body>
+</html>

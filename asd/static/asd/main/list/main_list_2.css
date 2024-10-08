@@ -1,0 +1,384 @@
+/* 기본 스타일 설정 */
+body {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* h2 제목 스타일 - 가운데 정렬 */
+h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+/* 상단바 스타일 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #9b9b9b;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.navbar img {
+    height: 40px;
+}
+
+.top-navbar {
+    display: flex;
+    gap: 20px;
+}
+
+/* 네비게이션 바 항목 스타일 */
+.navbar-item {
+    position: relative;
+    color: #fff;
+    padding-right: 0;
+}
+
+.navbar-item a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px;
+    display: block;
+}
+
+/* 마지막 네비게이션 바 항목에 오른쪽 여백 추가 */
+.navbar-item:last-child {
+    padding-right: 50px;
+}
+
+/* 서브 메뉴 스타일 */
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    z-index: 1000;
+    text-align: center;
+}
+
+/* 서브 메뉴 항목 스타일 */
+.submenu a {
+    display: block;
+    padding: 6px 8px;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+/* 서브 메뉴 항목 호버 스타일 */
+.submenu a:hover {
+    color: #000;
+}
+
+/* 서브 메뉴 호버 스타일 */
+.navbar-item:hover .submenu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 서브 메뉴가 사라지는 효과 */
+.navbar-item:not(:hover) .submenu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(10px);
+}
+
+/* 중앙 콘텐츠 스타일 */
+main {
+    padding: 20px;
+}
+p {
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 중앙에 배치 */
+    max-width: 800px; /* 텍스트가 너무 넓어지지 않도록 최대 너비 설정 */
+}
+
+/* 서비스 개요 섹션 */
+#overview {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+/* 서비스 개요 섹션 내부 컨테이너 */
+.overview-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* 이미지 스타일 */
+.overview-image img {
+    max-width: 40%;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(23, 23, 23, 0.9);
+    margin: 0 auto;
+}
+
+/* 설명 박스 스타일 */
+.overview-description {
+    flex: 1;
+    margin-right: 80px;
+}
+
+.overview-description h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.overview-description p {
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.overview-description ul {
+    font-size: 1.1em;
+    list-style-type: disc;
+    margin: 20px 40px;
+    text-align: left;
+}
+
+/* 주요 기능 섹션 */
+#features {
+    text-align: center; /* 전체 section 내의 텍스트 가운데 정렬 */
+    padding: 20px; /* 여백 추가 */
+}
+
+.f-pattern {
+    display: flex; /* Flexbox를 사용하여 요소 배치 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 20px; /* 항목 간의 간격 */
+    flex-wrap: wrap; /* 작은 화면에서도 줄 바꿈 */
+}
+
+.feature {
+    background-color: #fff; /* 배경 색상 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    padding: 20px; /* 내부 여백 */
+    max-width: 300px; /* 최대 너비 설정 */
+    margin: 10px; /* 외부 여백 */
+}
+
+.feature h3 {
+    font-size: 1em; /* 제목 크기 */
+    margin-bottom: 10px; /* 제목과 본문 사이 여백 */
+}
+
+.feature p {
+    font-size: 0.8em; /* 본문 텍스트 크기 */
+    margin: 0; /* 본문 텍스트 마진 제거 */
+}
+
+
+.feature-button {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.feature-button img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.feature-button span {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+/* 연락처 섹션 스타일 */
+#contact {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    padding: 20px; /* 여백 추가 */
+}
+
+/* 이메일 박스 스타일 */
+.email-box {
+    display: flex; /* Flexbox를 사용하여 요소 배치 */
+    align-items: center; /* 아이콘과 텍스트를 수직 중앙 정렬 */
+    justify-content: center; /* 중앙 정렬 */
+    background-color: #f9f9f9; /* 배경 색상 */
+    border: 1px solid #ddd; /* 테두리 색상 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 15px; /* 내부 여백 */
+    max-width: 400px; /* 최대 너비 설정 */
+    margin: 20px auto; /* 외부 여백 중앙 정렬 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+/* 이메일 아이콘 스타일 */
+.email-icon {
+    margin-right: 10px; /* 아이콘과 텍스트 사이의 간격 */
+}
+
+/* 이메일 주소 텍스트 스타일 */
+.email-box p {
+    margin: 0; /* 기본 마진 제거 */
+    font-size: 1.1em; /* 텍스트 크기 */
+    color: #333; /* 텍스트 색상 */
+}
+
+/* 연락처 섹션 */
+#contact {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#contact p {
+    font-size: 1.2em;
+}
+
+#contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+#contact ul li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+/* hr 구분선 스타일 */
+hr {
+    border: none;
+    border-top: 1px dotted #8d8d8d;
+    width: 70%;
+    margin: 60px auto;
+    opacity: 0.5;
+}
+
+/* 하단 메뉴 스타일 */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-main {
+    background-color: #222;
+    color: #aaa;
+    padding: 20px;
+    text-align: center;
+}
+
+.company-info {
+    font-size: 0.9em;
+}
+
+.copy {
+    color: #888;
+}
+
+/* 구분선 컨테이너 스타일 */
+.custom-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* 점 스타일 */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+}
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 768px) {
+    .navbar img {
+        height: 30px;
+    }
+    
+    .top-navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .overview-description h3 {
+        font-size: 1.5em;
+    }
+
+    .overview-description p, .overview-description ul {
+        font-size: 1em;
+    }
+
+    .feature-button img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .feature-button span {
+        font-size: 1.1em;
+    }
+
+    #contact p {
+        font-size: 1em;
+    }
+
+    #contact ul li {
+        font-size: 1em;
+    }
+
+    footer {
+        font-size: 0.9em;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .overview-container {
+        flex-direction: column;
+    }
+
+    .overview-image img {
+        max-width: 90%;
+    }
+
+    .feature-button img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .feature-button span {
+        font-size: 1em;
+    }
+}

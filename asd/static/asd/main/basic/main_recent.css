@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
     margin: 0;
     padding: 0;
     background-color: #f0f0f0; /* 연한 회색 배경 */

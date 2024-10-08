@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태양광 패널 유지보수</title>
+    <style>
+        /* 전체 스타일 */
+        body {
+            font-family: 'Noto Sans', Arial, sans-serif;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eaeaea;
+            padding: 14px 20px;
+        }
+        .navbar .left-menu a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        h1 {
+            color: #000;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .generation-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .generation-box {
+            width: 45%;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .generation-box h2 {
+            color: #000;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .generation-box img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .instructions {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #333;
+            text-align: left;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .input-row {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .button-row {
+            text-align: center;
+        }
+        button {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5e5959;
+        }
+        .status {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+
+        /* 패널 진단 결과 스타일 */
+        .generation-result {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 20px;
+            font-family: 'Noto Sans', sans-serif; /* 둥글게 보이는 폰트 적용 */
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 22px;
+        }
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: bold;
+            color: #333;
+            font-size: 24px;
+            font-family: 'Noto Sans', sans-serif; /* 둥글게 보이는 폰트 적용 */
+        }
+        .value {
+            color: #555;
+            font-size: 24px;
+            font-family: 'Noto Sans', sans-serif; /* 둥글게 보이는 폰트 적용 */
+        }
+        .status-row .status-value {
+            color: #d9534f;
+            font-weight: bold;
+            font-size: 24px;
+            font-family: 'Noto Sans', sans-serif; /* 둥글게 보이는 폰트 적용 */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left-menu">
+            <a href="{% url '메인페이지' %}">메인</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>태양광 패널 유지보수 서비스</h1>
+        <p>사용자의 위치 및 패널 정보를 바탕으로 태양광 패널의 잉여량을 확인하고, 유지보수가 필요한 경우 피드백을 제공합니다.</p>
+
+        <div class="generation-section">
+            <div class="generation-box">
+                <img src="{% static 'images/고지서.png' %}" alt="고지서 이미지">
+                <div class="instructions">
+                    <p>위 이미지를 참고하여, 고지서의 '당월 잉여량' 항목을 확인해 수치를 정확하게 입력해 주세요.</p>
+                    <p><strong>예:</strong> 고지서에 '당월 잉여량'이 500 kW로 표기되어 있다면, 오른쪽 입력란에 500을 입력해 주세요.</p>
+                </div>
+            </div>
+
+            <div class="generation-box">
+                {% if power %}
+                <h2>패널 진단 결과</h2>
+                <div class="generation-result">
+                    <div class="result-row">
+                        <span class="label">패널 용량:</span>
+                        <span class="value">{{ panel_capacity }}Kw</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="label">날짜:</span>
+                        <span class="value">{{ month }}월</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="label">발전소 잉여량:</span>
+                        <span class="value">{{ power }}Kw</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="label">당월 잉여량:</span>
+                        <span class="value">{{ user_power }}Kw</span>
+                    </div>
+                    <div class="result-row status-row">
+                        <span class="label">상태:</span>
+                        <span class="status-value">{{ status }}</span>
+                    </div>
+                </div>
+                {% else %}
+                <h2>당월 잉여량 입력</h2>
+                <div class="generation-input-box">
+                    <form action="{% url '유지보수 결론' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-row">
+                            <label for="month">월:</label>
+                            <select id="month" name="month" required>
+                                <option value="">월 선택</option>
+                                <option value="1">1월</option>
+                                <option value="2">2월</option>
+                                <option value="3">3월</option>
+                                <option value="4">4월</option>
+                                <option value="5">5월</option>
+                                <option value="6">6월</option>
+                                <option value="7">7월</option>
+                                <option value="8">8월</option>
+                            </select>
+                        </div>
+                        <div class="input-row">
+                            <label for="power">당월 잉여량 (kW):</label>
+                            <input type="number" id="power" name="power" placeholder="kW" required>
+                        </div>
+                        <div class="button-row">
+                            <button type="submit">확인</button>
+                        </div>
+                        {% if error_message %}
+                        <p class="error-message">{{ error_message }}</p>
+                        {% endif %}
+                    </form>
+                </div>
+                <hr>
+                <div class="instructions">
+                    <h2>당월 잉여량 안내</h2>
+                    <p>당월 잉여량은 이번 달 동안 태양광 패널이 생성한 전력 중에서 사용하지 않고 남은 전력을 의미합니다. 고지서에서 확인한 수치를 입력해 주세요.</p>
+                    <ul>
+                        <li>예를 들어, 패널이 총 1000 kW를 생성했고, 800 kW를 사용했다면 200 kW의 잉여 전력이 발생합니다.</li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 태양광 패널 유지보수 서비스. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

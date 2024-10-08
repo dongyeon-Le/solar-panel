@@ -1,53 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'asd/user/basic/signup.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+    <script>
+        let isIdChecked = false;
+        let isEmailChecked = false;
+
+        // 폼 제출 전에 전화번호를 합치는 함수
+        function combinePhoneNumbers() {
+            var phone1 = document.getElementById('phone_1').value;
+            var phone2 = document.getElementById('phone_2').value;
+            var phone3 = document.getElementById('phone_3').value;
+            var combinedPhone = phone1 + '-' + phone2 + '-' + phone3;
+            document.getElementById('UserPhone').value = combinedPhone;
+        }
+
+        // 아이디 중복 확인
+        function dupIdCheck() {
+            const userId = document.getElementById('UserId').value;
+            fetch("{% url '아이디 중복확인' %}?UserId=" + userId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        alert("이미 사용 중인 아이디입니다.");
+                        isIdChecked = false;
+                    } else {
+                        alert("사용 가능한 아이디입니다.");
+                        isIdChecked = true;
+                    }
+                });
+        }
+
+        // 이메일 중복 확인
+        function dupEmailCheck() {
+            const userEmail = document.getElementById('UserEmail').value;
+            fetch("{% url '이메일 중복확인' %}?UserEmail=" + userEmail)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        alert("이미 사용 중인 이메일입니다.");
+                        isEmailChecked = false;
+                    } else {
+                        alert("사용 가능한 이메일입니다.");
+                        isEmailChecked = true;
+                    }
+                });
+        }
+
+        // 폼 제출 시 중복 확인 여부 체크
+        function handleSubmit(event) {
+            if (!isIdChecked) {
+                alert("아이디 중복 확인을 해주세요.");
+                event.preventDefault();
+                return false;
+            }
+            if (!isEmailChecked) {
+                alert("이메일 중복 확인을 해주세요.");
+                event.preventDefault();
+                return false;
+            }
+            combinePhoneNumbers();
+            return true;
+        }
+    </script>
 </head>
 <body>
     <div class="signup-container">
         <h2>회원가입</h2>
-        <form action="/register/" method="POST" id="signupForm">
+        <form action="{% url '회원가입' %}" method="POST" id="signupForm" onsubmit="return handleSubmit(event);">
             {% csrf_token %}
             <div class="row">
-                <input type="text" id="id" name="id" placeholder="아이디" pattern="[a-z0-9]+" title="아이디는 소문자와 숫자만 가능합니다" autofocus>
+                <input type="text" id="UserId" name="UserId" placeholder="아이디" pattern="[a-z0-9]+" title="아이디는 소문자와 숫자만 가능합니다" autofocus required>
                 <button type="button" onclick="dupIdCheck()">중복 확인</button>
             </div>
-            <input type="password" id="password" name="pw" placeholder="비밀번호" required>
-            <input type="password" id="confirmPassword" placeholder="비밀번호 확인" required>
-            <input type="text" id="nm" name="nm" placeholder="이름" required>
+            <input type="password" id="UserPassword" name="UserPassword" placeholder="비밀번호" required>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호 확인" required>
+            <input type="text" id="UserName" name="UserName" placeholder="이름" required>
             <div class="row">
-                <input type="email" id="email" name="email" placeholder="이메일" required>
+                <input type="email" id="UserEmail" name="UserEmail" placeholder="이메일" required>
                 <button type="button" onclick="dupEmailCheck()">중복 확인</button>
             </div>
             <div class="c-container">
-                <input type="text" id="phone1" name="phone_1" maxlength="3" placeholder="010" required>
+                <input type="text" id="phone_1" name="phone_1" maxlength="3" placeholder="010" required>
                 <span>-</span>
-                <input type="text" id="phone2" name="phone_2" maxlength="4" placeholder="0000" required>
+                <input type="text" id="phone_2" name="phone_2" maxlength="4" placeholder="0000" required>
                 <span>-</span>
-                <input type="text" id="phone3" name="phone_3" maxlength="4" placeholder="0000" required>
+                <input type="text" id="phone_3" name="phone_3" maxlength="4" placeholder="0000" required>
+                <!-- 전화번호를 합쳐서 저장할 숨겨진 필드 -->
+                <input type="hidden" id="UserPhone" name="UserPhone">
             </div>
             <div class="address-container">
-                <input type="text" id="address" name="address" placeholder="주소" required>
+                <input type="text" id="UserAddress" name="UserAddress" placeholder="주소" required>
                 <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
             </div>
-            <input type="text" id="address_detail" name="address_detail" placeholder="상세주소" required>
+            <input type="text" id="UserAddress_detail" name="UserAddress_detail" placeholder="상세주소" required>
             <button type="submit">가입하기</button>
         </form>
     </div>
 
+    <!-- 다음 주소 검색 API 추가 -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         function openDaumPostcode() {
             new daum.Postcode({
                 oncomplete: function(data) {
-                    document.getElementById('address').value = data.address;
+                    document.getElementById('UserAddress').value = data.address;
                 }
             }).open();
         }
     </script>
+
+    <!-- 기존 messages 처리 -->
+    <!-- {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} -->
 </body>
 </html>

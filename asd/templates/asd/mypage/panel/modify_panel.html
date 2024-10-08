@@ -3,10 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>패널 정보수정</title>
+    <title>패널 정보 수정</title>
+    {% load static %}
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+    <link rel="stylesheet" href="{% static 'asd/mypage/panel/panel.css' %}">
+    <style>
+        body {
+            font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin: 20px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #000; /* 검은색 버튼 배경 */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333; /* 호버 시 다크 그레이로 변경 */
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <a href="/">main</a>
-    <h3>패널 정보수정</h3>
+    <div class="container">
+        <h1>패널 정보 수정</h1>
+        <form method="post" action="{% url '패널정보 수정' panel.id %}" onsubmit="return validateForm()">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="error">{{ form.non_field_errors }}</div>
+            {% endif %}
+            <div class="form-group">
+                {% for field in form %}
+                    {% if field.name == "location" %}
+                        <label for="location">주소 입력:</label>
+                        <input type="text" id="location" name="location" value="{{ form.location.value }}" required>
+                        <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
+                    {% elif field.name == "capacity" or field.name == "size" or field.name == "quantity" %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                            <input type="{{ field.field.widget.input_type }}" id="{{ field.id_for_label }}" name="{{ field.name }}" value="{{ field.value }}" min="1" required>
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button type="submit">저장하기</button>
+        </form>
+        <a class="back-link" href="{% url '패널정보 조회' %}">패널 정보 조회로 돌아가기</a>
+    </div>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function openDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    document.getElementById('location').value = data.address;
+                }
+            }).open();
+        }
+
+        function validateForm() {
+            var today = new Date().toISOString().split('T')[0];
+            var date = document.getElementById('{{ form.date.id_for_label }}').value;
+            var record = document.getElementById('{{ form.record.id_for_label }}').value;
+
+            if (date > today) {
+                alert("설치일자는 오늘 이후의 날짜로 설정할 수 없습니다.");
+                return false; // 폼 제출 방지
+            }
+
+            if (record > today) {
+                alert("점검기록일자는 오늘 이후의 날짜로 설정할 수 없습니다.");
+                return false; // 폼 제출 방지
+            }
+
+            var capacity = parseFloat(document.getElementById('{{ form.capacity.id_for_label }}').value);
+            var size = parseFloat(document.getElementById('{{ form.size.id_for_label }}').value);
+            var quantity = parseFloat(document.getElementById('{{ form.quantity.id_for_label }}').value);
+
+            if (capacity <= 0 || size <= 0 || quantity <= 0) {
+                alert("Capacity, size, and quantity는 0보다 큰 값을 입력해야 합니다.");
+                return false; // 폼 제출 방지
+            }
+            return true; // 유효성 검사가 통과되면 폼 제출 허용
+        }
+    </script>
 </body>
 </html>

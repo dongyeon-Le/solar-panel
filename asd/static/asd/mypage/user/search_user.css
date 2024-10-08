@@ -1,0 +1,173 @@
+/* 전체 레이아웃 설정 */
+body {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* 뒤로가기 버튼과 콘텐츠를 수직으로 배치 */
+}
+
+/* 뒤로가기 네비게이터 */
+a[href="/mypage"] {
+    display: inline-block;
+    margin-bottom: 20px; /* 하얀 박스 외부에 배치 */
+    color: #0084ff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* 약간의 그림자 추가 */
+}
+
+a[href="/mypage"]:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}
+
+/* 중앙 박스 스타일 */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    text-align: center;
+}
+h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+/* 회원 정보 제목 및 안내문 */
+p {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 회원 정보 레이아웃 */
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* 항목 사이 간격 추가 */
+    justify-items: center;
+    margin-top: 30px;
+}
+
+ul li {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+ul li:hover {
+    transform: scale(1.05); /* 박스에 호버 시 확대 효과 */
+    background-color: #fbfbfb; /* 배경색 조금 더 밝게 변경 */
+}
+
+ul li strong {
+    display: block;
+    font-weight: bold;
+    font-size: 16px; /* 글자 크기 증가 */
+    margin-bottom: 8px;
+    color: #444; /* 더 어두운 색으로 변경 */
+}
+
+ul li span {
+    display: block;
+    font-size: 18px; /* 글자 크기 증가 */
+    color: #000; /* 검정색으로 변경 */
+    font-weight: 600; /* 볼드 처리로 가독성 향상 */
+}
+/* 기본적으로 링크 밑줄 제거 */
+ul li a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: black;
+    font-weight: normal;
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+/* 호버 시 스타일 */
+ul li a:hover {
+    font-weight: bold; /* 글자 볼드 처리 */
+    color: #34597f; /* 푸른기가 도는 블랙 */
+}
+
+/* 로그인 안내문 */
+.login-info {
+    font-size: 18px;
+    color: #ff0000;
+    text-align: center;
+    margin-top: 30px;
+}
+/* 오버레이 (배경 어두워지기) */
+.overlay {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+    z-index: 1000; /* 팝업을 다른 요소 위에 표시 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+}
+
+/* 팝업 박스 */
+.popup {
+    background: #fff; /* 배경색 흰색 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 20px; /* 안쪽 여백 */
+    width: 300px; /* 너비 설정 */
+    max-width: 90%; /* 최대 너비 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    position: relative; /* 상대적 위치 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+}
+
+/* 닫기 버튼 */
+.close-btn {
+    position: absolute; /* 절대 위치 */
+    top: 10px;
+    right: 10px;
+    font-size: 20px; /* 글자 크기 */
+    cursor: pointer; /* 커서 손 모양으로 변경 */
+}
+
+/* 팝업 메시지 및 버튼 */
+#popup-message {
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+.popup a {
+    display: inline-block; /* 인라인 블록 요소 */
+    margin: 5px; /* 버튼 간격 */
+    padding: 10px 20px; /* 버튼 안쪽 여백 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    text-decoration: none; /* 링크의 밑줄 제거 */
+    color: #fff; /* 글자 색상 */
+    background-color: #007bff; /* 기본 버튼 배경색 */
+    transition: background-color 0.3s, transform 0.3s; /* 배경색 및 크기 변화에 부드러운 효과 추가 */
+}
+
+.popup a:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+    font-weight: bold; /* 글자 굵게 */
+    color: #e0e0e0; /* 호버 시 글자 색상 변경 */
+    transform: scale(1.05); /* 버튼 크기 약간 확대 */
+}

@@ -1,0 +1,126 @@
+/* 기본 설정 */
+body {
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* 페이지 제목 */
+h1 {
+    text-align: center;
+    color: #000;
+    margin-top: 80px;
+    font-size: 35px; /* 제목 크기 확대 */
+}
+
+/* 버튼을 가로로 나열하는 컨테이너 스타일 */
+.button-container {
+    display: flex;
+    justify-content: center; /* 버튼들을 중앙에 배치 */
+    gap: 20px; /* 버튼들 사이의 간격 */
+    margin-top: 20px; /* 제목과 버튼 사이의 여백 */
+}
+
+/* 뒤로가기 버튼 스타일 */
+.back-link-back, .back-link-panel {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(to bottom, #cccccc, #838383); /* 흑백 그라데이션 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.back-link-back:hover, .back-link-panel:hover {
+    background: linear-gradient(to bottom, #b3b3b3, #595959); /* 호버 시 색상 변경 */
+}
+
+
+/* 부제목 */
+h2 {
+    color: #007bff; /* 부제목 색상 */
+    border-bottom: 2px solid #007bff; /* 부제목 아래 선 */
+    padding-bottom: 10px;
+    margin-top: 50px; /* 여백 증가 */
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* 버튼 */
+.btn {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(to bottom, #000, #333); /* 흑백 그라데이션 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.3s ease; /* 버튼 호버 효과 */
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard 폰트 적용 */
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom, #333, #000); /* 호버 시 색상 변경 */
+    transform: scale(1.05); /* 살짝 확대되는 효과 추가 */
+}
+
+/* 테이블 스타일 */
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px auto; /* 좌우 자동 중앙 정렬 */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+thead {
+    background-color: #f8f9fa; /* 헤더 배경 색상 */
+    color: #333;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+th {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+/* 버튼 안의 폼 스타일 */
+form button[type="submit"] {
+    background: linear-gradient(to bottom, #000, #333); /* 흑백 그라데이션 */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard 폰트 적용 */
+}
+
+form button[type="submit"]:hover {
+    background: linear-gradient(to bottom, #333, #000); /* 호버 시 색상 변경 */
+    transform: scale(1.05); /* 살짝 확대되는 효과 추가 */
+}
+
+/* 구분선 */
+hr {
+    border: 0;
+    border-top: 3px dashed #ccc; /* 연한 회색 점선 */
+    width: 70%;
+    margin: 20px auto; /* 상하 margin 5px */
+}

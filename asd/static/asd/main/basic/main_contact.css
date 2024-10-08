@@ -1,6 +1,6 @@
 /* 전체 화면을 위한 스타일 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
     display: flex;
     justify-content: center;
     align-items: center;

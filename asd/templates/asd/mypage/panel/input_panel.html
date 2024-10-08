@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>패널 정보 입력</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'asd/mypage/panel/input_panel.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+
+</head>
+<body>
+
+    <!-- 뒤로가기 링크 -->
+    <a href="/mypage">뒤로가기</a>
+
+    <h1>패널 정보 입력</h1>
+
+    <!-- 오류 메시지가 있을 경우 팝업을 띄우기 위한 스크립트 -->
+    {% if error_message %}
+        <script>
+            alert('{{ error_message }}');
+        </script>
+    {% endif %}
+
+    <!-- 패널 정보 입력 폼 (오류 메시지가 없을 때만 출력) -->
+    {% if form %}
+    <form method="post" action="{% url '패널정보 저장' %}">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name == "location" %}
+                <!-- 주소 필드 커스텀 출력 -->
+                <div>
+                    <label for="location">주소 입력:</label>
+                    <input type="text" id="location" name="location" placeholder="주소" required>
+                    <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
+                </div>
+            {% else %}
+                <!-- 나머지 필드 기본 출력 -->
+                <p>{{ field.label_tag }} {{ field }}</p>
+            {% endif %}
+        {% endfor %}
+        <button type="submit">저장하기</button>
+    </form>
+    {% endif %}
+
+    <!-- 다음 주소 검색 API 추가 -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function openDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    document.getElementById('location').value = data.address;
+                }
+            }).open();
+        }
+    </script>
+
+</body>
+</html>

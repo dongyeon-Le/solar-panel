@@ -1,12 +1,191 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="has-scroll-init has-scroll-smooth" data-scroll-direction="vertical">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인리스트4</title>
+    <title>메인리스트 1</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 </head>
 <body>
-    <a href="/">main</a>
-    메인화면에 있는 서비스 리스트 중 4번의 화면입니다.
+    <!-- 상단바 -->
+    <div class="navbar">
+            <a href="{% url '메인페이지' %}">
+                <img src="{% static 'images/logo_black.png' %}" alt="대표사진">
+            </a>
+        <div class="top-navbar">
+            <div class="navbar-item">
+                <a href="{% url '메인 목록1' %}">사용안내</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">서비스 개요</a>
+                    <a href="{% url '메인페이지' %}">사용자 가이드</a>
+                    <a href="{% url '메인페이지' %}">해결 과정</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록2' %}">원인진단</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">패널 손상 자가진단</a>
+                    <a href="{% url '메인페이지' %}">시스템 검사</a>
+                    <a href="{% url '메인페이지' %}">원인 유형</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록3' %}">유지보수</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">정기점검</a>
+                    <a href="{% url '메인페이지' %}">부품 교체</a>
+                    <a href="{% url '메인페이지' %}">청소 및 관리</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록4' %}">패널위치</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">내 위치 확인</a>
+                    <a href="{% url '메인페이지' %}">설치 위치 최적화</a>
+                    <a href="{% url '메인페이지' %}">패널 정보 더보기</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록5' %}">정보비교</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">성능비교</a>
+                    <a href="{% url '메인페이지' %}">주위 공공기관과의 비교</a>
+                    <a href="{% url '메인페이지' %}">제품 별 비교</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- 중앙 -->
+    <main>
+        <section id="main_list_4_overview">
+            <h2>위치 기반 분석</h2>
+            <p>패널 위치를 기반으로 분석합니다.</p>
+        </section>
+        <!-- 추가 콘텐츠 섹션 -->
+        <section class="main_list_4_content">
+            <h2>상세 정보</h2>
+            {% if result %}
+            <div class="map-data-container">
+                <div class="map-data-map-container">
+                    <h1>가까운 공공기관 위치</h1>
+                    <div id="map">
+                        {{ result|safe }}
+                    </div>
+                </div>
+                <div class="map-data-facilities-container">
+                    <h1>가장 가까운 5개 공공시설</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>순번</th>
+                                <th>capacity</th>
+                                <th>address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ 1 }}</td>
+                                <td>{{ capacity.0 }}</td>
+                                <td>{{ address.0 }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 2 }}</td>
+                                <td>{{ capacity.1 }}</td>
+                                <td>{{ address.1 }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 3 }}</td>
+                                <td>{{ capacity.2 }}</td>
+                                <td>{{ address.2 }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 4 }}</td>
+                                <td>{{ capacity.3 }}</td>
+                                <td>{{ address.3 }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ 5 }}</td>
+                                <td>{{ capacity.4 }}</td>
+                                <td>{{ address.4 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <p>패널 정보가 없습니다.</p>
+        {% endif %}
+        </section>
+    </main>
+
+    
+    <!-- 하단 메뉴 -->
+    <footer>
+        <a href="{% url '개인정보 처리방침' %}">개인정보 처리방침</a>
+        <a href="{% url '이용약관' %}">이용약관</a>
+        <a href="{% url '사이트맵' %}">사이트맵</a>
+    </footer>
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="{% url '문의방법' %}"><span>문의하기</span></a></li>
+                    <li><a href="https://www.history.go.kr/contents/contentsPage.do;jsessionid=54ACE2C6BF4190D8E5E115251F7FE02F?groupId=000000000571&menuId=000000000572&pageId=000000000211"><span>개인정보처리방침</span></a></li>
+                    <li><a href="https://www.history.go.kr/contents/contentsPage.do?groupId=000000000571&menuId=000000000575&pageId=000000000214" class="footer_email"><span>이메일무단수집거부</span></a></li>
+                    <li><a href="https://ethics.lg.co.kr/index.do" target="_blank"><span>정도경영 사이버신문고</span></a></li>
+                    <li><a href="https://ethics.lg.co.kr/realName/insertDetailForm.do" target="_blank"><span>협력사 상생고</span></a></li>
+                    <li><a href="https://guest.samsungdisplay.com/co/gd/COGD001.do"><span>협력사 등록</span></a></li>
+                </ul>
+                <div class="links">
+                    <div class="family-site">
+                        <a href="#" class="btn-toggle" style="width: 10%;">
+                            <span>관련사이트</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10.985" height="6.002" viewBox="0 0 10.985 6.002">
+                                <path fill="none" stroke="#010101" d="M312.354 7981.66l5.146-4.948 5.146 4.948" transform="translate(-312.007 -7976.018)"></path>
+                            </svg>
+                        </a>
+            <div class="company-info">
+                <p>
+                    <span>대표이사: Electronics Kim</span> <span class="split">|</span>
+                    <span>01234 광주광역시 광산구 소촌로152번길 37</span> <span class="split">|</span>
+                    <span>대표번호 062-940-3000</span>
+                </p>
+                <p>
+                    <span class="copy">© KEPCO KDT 2024 Team ZeroSolar. All Rights Reserved</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                datasets: [{
+                    label: '전력 사용량 (kWh)',
+                    data: [12, 19, 3, 5, 2, 3, 10],
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

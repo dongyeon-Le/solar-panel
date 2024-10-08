@@ -1,0 +1,153 @@
+/* 기본 스타일 설정 */
+body {
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+    color: #333;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* 뒤로가기 링크 스타일 */
+.back-link {
+    display: inline-block; /* 버튼처럼 보이도록 inline-block으로 변경 */
+    margin: 20px auto; /* 가운데 정렬을 위해 margin을 auto로 설정 */
+    color: #0084ff; /* 네비게이터와 일치하도록 색상 변경 */
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* 기존 디자인과 일치하도록 그림자 추가 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    display: block; /* 전체 너비를 차지하도록 설정 */
+    width: 60px;
+}
+
+/* 뒤로가기 링크 호버 효과 */
+.back-link:hover {
+    background-color: #e0e0e0; /* 호버 시 배경색 변경 */
+    color: #000000; /* 호버 시 텍스트 색상 변경 */
+}
+
+
+/* 중앙 컨테이너 스타일 */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #333;
+}
+
+/* 폼 입력 필드 스타일 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+
+}
+
+form p {
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* 버튼 스타일 */
+form button[type="button"] {
+    background: linear-gradient(to bottom, #eaeaea, #ededed); /* 은은한 짙은 회색 그라데이션 */
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-family: 'Pretendard', sans-serif; /* Pretendard 폰트 적용 */
+}
+
+/* 버튼 호버 효과 */
+form button[type="button"]:hover {
+    background: linear-gradient(to bottom, #b7b7b7, #d2d2d2); /* 호버 시 그라데이션 색상 변경 */
+    transform: scale(1.05); /* 살짝 확대되는 효과 추가 */
+}
+
+
+form button[type="button"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* 제출 버튼 스타일 */
+form button[type="submit"] {
+    background: linear-gradient(to bottom, #7f7f7f, #606060); /* 은은한 짙은 회색 그라데이션 */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-family: 'Pretendard', sans-serif; /* Pretendard 폰트 적용 */
+}
+
+/* 제출 버튼 호버 효과 */
+form button[type="submit"]:hover {
+    background: linear-gradient(to bottom, #5a5a5a, #3e3e3e); /* 호버 시 그라데이션 색상 변경 */
+    transform: scale(1.05); /* 살짝 확대되는 효과 추가 */
+}
+
+/* 추가 링크 스타일 */
+.additional-links {
+    margin-top: 20px;
+}
+
+.additional-links a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.additional-links a:hover {
+    color: #313131;
+}
+/* 커스텀 구분선 스타일 */
+.custom-divider {
+    border-top: 3px dotted #dcdcdc; /* 연한 회색 점선 구분선 */
+    width: 80%; /* 화면의 70% 길이 */
+    margin: 30px 0; /* 상하 margin 5px */
+    margin-left: auto; /* 중앙 정렬 */
+    margin-right: auto; /* 중앙 정렬 */
+}

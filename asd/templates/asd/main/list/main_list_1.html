@@ -1,12 +1,187 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="has-scroll-init has-scroll-smooth" data-scroll-direction="vertical">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인리스트1</title>
+    <title>메인리스트 1</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'asd/main/basic/main.css' %}">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 </head>
 <body>
-    <a href="/">main</a>
-    메인화면에 있는 서비스 리스트 중 1번의 화면입니다.
+    <!-- 상단바 -->
+    <div class="navbar">
+            <a href="{% url '메인페이지' %}">
+                <img src="{% static 'images/logo_black.png' %}" alt="대표사진">
+            </a>
+        <div class="top-navbar">
+            <div class="navbar-item">
+                <a href="{% url '메인 목록1' %}">사용안내</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">서비스 개요</a>
+                    <a href="{% url '메인페이지' %}">사용자 가이드</a>
+                    <a href="{% url '메인페이지' %}">해결 과정</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록2' %}">원인진단</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">패널 손상 자가진단</a>
+                    <a href="{% url '메인페이지' %}">시스템 검사</a>
+                    <a href="{% url '메인페이지' %}">원인 유형</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록3' %}">유지보수</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">정기점검</a>
+                    <a href="{% url '메인페이지' %}">부품 교체</a>
+                    <a href="{% url '메인페이지' %}">청소 및 관리</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록4' %}">패널위치</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">내 위치 확인</a>
+                    <a href="{% url '메인페이지' %}">설치 위치 최적화</a>
+                    <a href="{% url '메인페이지' %}">패널 정보 더보기</a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <a href="{% url '메인 목록5' %}">정보비교</a>
+                <div class="submenu">
+                    <a href="{% url '메인페이지' %}">성능비교</a>
+                    <a href="{% url '메인페이지' %}">주위 공공기관과의 비교</a>
+                    <a href="{% url '메인페이지' %}">제품 별 비교</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+            <!-- 서비스 개요 -->
+    <section id="main_list_1_overview-">
+        <h2>서비스 개요</h2>
+        <div class="custom-divider">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div> 
+            <div class="main_list_1_overview">
+                <div class="main_list_1_overview-image">
+                    <img src="/static/images/KakaoTalk_20240919_100505941.jpg" alt="태양광 패널 이미지">
+                </div>
+                <div class="main_list_1_overview-description">
+                    <h3>우리의 태양광 패널 유지보수 서비스는<br>공공기관 및 개별 이용자의 <strong>효율적인 <br>에너지 관리</strong>를 돕기 위해 설계되었습니다.</h3>
+                    <br>
+                    <p>태양광 패널의 위치 데이터를 기반으로 전력 효율을 분석하여 <br>최적의 성능을 유지하도록 지원합니다.</p>
+                    <br>
+                    <ul>
+                        <li><strong>데이터 수집:</strong> 태양광 패널의 설치 위치 및 환경 데이터를 수집합니다.</li>
+                        <li><strong>전력 효율 분석:</strong> 수집된 데이터를 분석, 전력 손실 원인을 진단합니다.</li>
+                        <li><strong>정기 점검:</strong> 주기적 유지보수 서비스로 패널의 최적 성능을 유지합니다.</li>
+                        <li><strong>보고서 제공:</strong> 분석 결과와 유지보수 이력 보고서를 제공합니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+        <br>
+    <section id="features">
+        <h2>주요 기능</h2>
+        <div class="custom-divider">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>            
+        <div class="main_list_1_z-pattern">
+            <div class="feature">
+                <button class="feature-button">
+                    <img src="https://img.icons8.com/ios/250/000000/waypoint-map.png" alt="위치 데이터 입력" class="main_list_1_img">
+                    <span>위치 데이터 입력</span>
+                </button>
+                <p>사용자의 패널 위치 정보를 입력받아 분석을 시작합니다.</p>
+            </div>
+            <div class="feature">
+                <button class="feature-button">
+                    <img src="https://img.icons8.com/ios/250/000000/hammer.png" alt="전력 효율 분석" class="main_list_1_img">
+                    <span>전력 효율 분석</span>
+                </button>
+                <p>입력된 데이터를 바탕으로 전력 효율을 분석합니다.</p>
+            </div>
+            <div class="feature">
+                <button class="feature-button">
+                    <img src="https://img.icons8.com/ios/250/000000/user-manual.png" alt="진단 결과 제공" class="main_list_1_img">
+                    <span>진단 결과 제공</span>
+                </button>
+                <p>전력 효율 분석 결과를 제공합니다.</p>
+            </div>
+        </div>        
+    </section>
+    <hr>
+    <!-- 중앙 -->   
+>
+        <hr>
+        <br>
+        <br>
+        <section id="contact">
+            <h2>연락처</h2>
+            <div class="custom-divider">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>            
+            <p>태양광 패널 유지보수 서비스 관련 문의는 아래 연락처로 해주십시오:</p>
+            <br>
+            <ul>
+                <li><strong>고객 지원 부서:</strong> <a href="mailto:support@example.com">support@example.com</a> - 일반 문의 및 지원</li>
+                <li><strong>기술 지원 부서:</strong> <a href="mailto:techsupport@example.com">techsupport@example.com</a> - 기술적 문제 및 유지보수 요청</li>
+                <li><strong>상업 부서:</strong> <a href="mailto:commercial@example.com">commercial@example.com</a> - 계약 및 상업적 질문</li>
+                <li><strong>운영 부서:</strong> <a href="mailto:operations@example.com">operations@example.com</a> - 운영 및 관리 관련 문의</li>
+            </ul>
+            <br>
+            <hr>
+        </section>
+    </main>
+    <br>
+    <br>
+    <br>
+    
+    <!-- 하단 메뉴 -->
+    <footer>
+        <div class="company-info">
+            <p>
+                <span class="copy">© KEPCO KDT 2024 Team ZeroSolar. All Rights Reserved</span>
+            </p>
+        </div>    
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                datasets: [{
+                    label: '전력 사용량 (kWh)',
+                    data: [12, 19, 3, 5, 2, 3, 10],
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

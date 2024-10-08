@@ -1,207 +1,1917 @@
-/*------------------------------------------------------------*/
-/* 전체배경 색 */
+/* 기본 스타일 설정 */
 body {
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+    color: #333;
+    background-color: #f5f5f5;
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+}
+
+/* 이미지 스타일 */
+.intro-image {
+    position: fixed; /* 화면 전체를 가리기 위해 고정 위치 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1000; /* 나머지 콘텐츠보다 위에 배치 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* 배경색을 흰색으로 설정 */
+}
+/* 이미지가 화면 전체를 차지하게 설정 */
+.intro-image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 애니메이션 효과 */
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.intro-image.animate {
+    animation: slideOut 2s ease-out forwards;
+}
+
+/* 콘텐츠 영역 */
+.content {
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+    position: relative;
+    z-index: 1; /* 콘텐츠가 이미지 위에 표시되도록 설정 */
+}
+/* 네비게이션 바 */
+.navbar {
+    font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+    display: flex;
+    justify-content: space-between; /* 로고와 메뉴를 양쪽 끝에 배치 */
+    align-items: center;
+    padding: 15px 30px; /* 여백 조정 */
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 연한 색상의 부드러운 그림자 추가 */
+}
+
+.navbar .left-menu, .navbar .right-menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .left-menu a, .navbar .right-menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 10px;
+}
+
+.navbar .left-menu a:hover, .navbar .right-menu a:hover {
+    background-color: #444;
+}
+
+.navbar img {
+    display: block;
+    height: 40px; /* 이미지 높이 조정 */
+    width: auto; /* 비율 유지 */
+    margin-right: 20px; /* top-navbar와의 간격 */
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; /* 부드러운 확대 효과를 위한 전환 설정 */
+}
+
+/* 호버 시 이미지 확대 */
+.navbar img:hover {
+    transform: scale(1.05); /* 이미지 크기를 5% 확대 */
+}
+
+
+/* 상단 메뉴 */
+.top-navbar {
+    display: flex;
+    align-items: center;
+    color: #000;
+    font-family: 'Noto Sans';
+    font-size: 15px;
+    margin-right: 950px;
+}
+
+.top-navbar .navbar-item {
+    position: relative;
+    margin-left: 30px; /* 항목 간의 간격 추가 */
+    font-size: 15px;
+}
+
+.top-navbar a {
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 17px;
+    display: inline-block;
+    transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+/* 하이라이트 효과 및 호버 스타일 */
+.top-navbar a::after {
+    content: '';
+    display: block;
+    position: relative;
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background: linear-gradient(to right, #000, #777, #000);
+    transition: width 0.4s ease;
+    z-index: 1;
+}
+
+.top-navbar a:hover::after {
+    width: 0;
+}
+
+.top-navbar a:hover {
+    color: #0084ff;
+    font-size: 17px;
+}
+
+
+/* 서브 메뉴 */
+.submenu {
+    display: none; /* 기본적으로 숨기기 */
+    position: absolute; /* 부모 요소를 기준으로 절대 위치 설정 */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    top: 100%; /* 부모 요소 바로 아래에 위치 */
+    margin-left: 50px; /* 부모 요소에서 20px 떨어짐 */
+    transform: translateX(-300%); /* X축 이동 없음 */
+    width: 200px; /* 서브 메뉴의 너비 조정 */
+    z-index: 1000; /* 서브 메뉴가 다른 요소 위에 위치하도록 설정 */
+}
+
+.submenu a {
+    display: block;
+    padding: 6px 8px; /* 패딩을 살짝 줄임 */
+    color: #000; /* 기본 폰트 색상 검정 */
+    text-decoration: none;
+    font-size: 16px; /* 폰트 크기 줄임 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    transition: color 0.2s ease;
+}
+
+
+
+/* 서브메뉴 호버 스타일 */
+.submenu a:hover {
+    color: #000;
+}
+
+/* 서브메뉴 항목 외 나머지 글자 회색 처리 */
+.submenu:hover a {
+    color: #888;
+}
+
+.submenu a:hover {
+    color: #000;
+}
+
+/* 서브메뉴가 나타나는 효과 */
+.navbar-item:hover .submenu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 서브메뉴가 사라지는 효과 */
+.navbar-item:not(:hover) .submenu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(10px);
+}
+/* 상단바에 있는 웰컴 메시지 */
+.welcome-message {
+    position: fixed; /* 화면의 고정된 위치에 배치 */
+    top: 20px; /* 화면의 상단에서 20px 떨어진 위치 */
+    right: 80px; /* 화면의 우측에서 80px 떨어진 위치 (토글 버튼 왼쪽에 배치) */
+    background-color: #ffffff; /* 배경색 설정 */
+    padding: 10px 20px; /* 여백 조정 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
+    transition: opacity 0.3s ease; /* 부드러운 표시 전환 */
+    display: flex; /* 아이콘과 텍스트를 수평으로 배치하기 위해 flexbox 사용 */
+    align-items: center; /* 텍스트와 아이콘을 수직으로 가운데 정렬 */
+}
+
+/* 웰컴 메시지 안의 텍스트 스타일 */
+.welcome-message p {
+    margin: 0; /* 기본 여백 제거 */
+    font-size: 16px; /* 글자 크기 조정 */
+    color: #333; /* 글자 색상 설정 */
+    margin-right: 10px; /* 아이콘과의 간격 조정 */
+}
+
+/* 회전 아이콘 스타일 */
+.welcome-message img {
+    width: 16px; /* 이미지 너비 조정 */
+    height: 16px; /* 이미지 높이 조정 */
+    color: #007BFF; /* 아이콘 색상 설정 */
+    animation: spin 2s linear infinite; /* 무한 회전 애니메이션 적용 */
+}
+
+
+/* 회전 애니메이션 정의 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg); /* 회전 초기 상태 */
+    }
+    100% {
+        transform: rotate(360deg); /* 360도 회전 */
+    }
+}
+
+
+/* 콘텐츠 영역 */
+.content {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.image-box img {
+    max-width: 12%;
+    height: auto;
+}
+h1 {
+    color: #000;
+    font-size: 30px;
+}
+p {
+    color: #666;
+}
+
+/* info-section 스타일 */
+.info-section {
+    display: flex;
+    gap: 40px; /* 아이템 사이 간격 */
+    box-sizing: border-box;
+    max-width: 90%; /* 원하는 최대 너비로 조정 (예: 80%) */
+    margin-left: 80px;
+}
+
+
+.info-item-1, .info-item-2, .info-item-3 {
+    flex: 1 1 calc(33.333% - 15px); /* 3열 배치, 각 항목이 33.333% 너비를 가지며 간격을 고려 */
+    box-sizing: border-box;
+    padding: 15px;
+    background-color: #f9f9f9; /* 연한 배경색 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 살짝 그림자 */
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease; /* 호버 시 그림자 효과 */
+}
+
+/* 호버 시 스타일 */
+.info-item-1:hover, .info-item-2:hover, .info-item-3:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* 호버 시 그림자를 더 강조 */
+    transform: scale(1.05) translateY(-5px); /* 요소를 살짝 키우고 위로 이동 */
+}
+
+/* info-item-1 스타일 */
+.info-item-1 {
+    background-color: #f9f9f9;
+}
+
+.info-item-1 h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-1 h2:hover {
+    color: #007bff; /* 호버 시 색상 변경 */
+}
+
+.info-item-1 p {
+    font-size: 14px;
+    color: #555;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-1 p:hover {
+    color: #333; /* 호버 시 색상 변경 */
+}
+
+.info-item-1 .chart {
+    width: 100%;
+    height: 120px; /* 그래프 높이 조정 */
+    margin-top: 10px;
+}
+
+/* info-item-2 스타일 */
+.info-item-2 {
+    background-color: #f9f9f9;
+}
+
+.info-item-2 h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-2 h2:hover {
+    color: #007bff; /* 호버 시 색상 변경 */
+}
+
+.info-item-2 p {
+    font-size: 14px;
+    color: #555;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-2 p:hover {
+    color: #333; /* 호버 시 색상 변경 */
+}
+
+.notice-board {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.notice-column {
+    flex: 1;
+}
+
+.notice-column h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #333;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.notice-column h3:hover {
+    color: #007bff; /* 호버 시 색상 변경 */
+}
+
+.notice-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.notice-column li {
+    margin-bottom: 8px;
+}
+
+.notice-link {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.notice-link:hover {
+    color: #0056b3; /* 호버 시 색상 변경 */
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0; /* 구분선 위아래 여백 */
+}
+
+/* info-item-3 스타일 */
+.info-item-3 {
+    padding: 20px;
+    background-color: #f9f9f9; /* 배경색 설정 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 부드러운 그림자 추가 */
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.info-item-3 h2 {
+    font-size: 24px; /* 제목 폰트 크기 증가 */
+    margin-bottom: 20px; /* 제목과 아래 내용 간격 설정 */
+    color: #333; /* 제목 색상 */
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-3 h2:hover {
+    color: #007bff; /* 호버 시 색상 변경 */
+}
+
+.info-item-3 p {
+    font-size: 14px; /* 폰트 크기 설정 */
+    color: #555; /* 기본 글자색 */
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-3 p:hover {
+    color: #333; /* 호버 시 색상 변경 */
+}
+
+/* 로그인 상태 메시지 */
+.info-item-3 span {
+    font-size: 20px; /* 폰트 크기 설정 */
+    font-weight: bold; /* 폰트 두께 설정 */
+    color: #555; /* 글자색 */
+}
+
+/* 로그인 폼 레이아웃 */
+.info-item-3 form {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background-color: #333; /* 전체 페이지 배경 색 */
+    gap: 15px; /* 폼 요소 간의 간격 */
 }
 
-/*------------------------------------------------------------*/
-/* 상단 메뉴 스타일 */
-.top-navbar {
-    background-color: white; /* 상단 메뉴 위 배경색 */
-    padding: 10px 20px; /* 상단 메뉴 패딩 */
-    text-align: center;
-    color: black; /* 메뉴 텍스트 색상 */
-    margin-bottom: 20px; /* 상단메뉴와 메인컨텐츠 사이 간격 */
+/* 아이디와 비밀번호 입력 필드 레이아웃 */
+.info-item-3 form div {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap; /* 메뉴항목 감싸기 */
-}
-.top-navbar a {
-    color: black; /* 메뉴 항목 텍스트 색상 */
-    text-decoration: none; /* 링크의 밑줄 없애기 */
-    flex: 1; /* 메뉴항목 너비 동일하게 유지 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-    padding: 10px; /* 메뉴 항목 패딩 */
-    font-size: 18px; /* 메뉴 항목 글꼴 크기 */
-}
-.top-navbar a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 표시 */
-}
-.top-navbar a:not(:last-child) {
-    border-right: 1px solid #ddd; /* 오른쪽만 구분선 추가 */
-}
-.navbar {
-    display: flex; /* 상단 메뉴의 항목을 가로로 배치 */
-    background-color: #333; /* 상단 메뉴 배경색 */
-    justify-content: space-between;
-    padding: 14px 20px; /* 상단 메뉴 패딩 */
-}
-.navbar .left-menu a, .navbar .right-menu a {
-    color: white; /* 메뉴 항목 텍스트 색상 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-    padding: 14px 20px; /* 항목 패딩 */
-    text-decoration: none; /* 링크의 밑줄 없애기 */
-    font-size: 18px; /* 글꼴 크기 */
-}
-.navbar .left-menu a:hover, .navbar .right-menu a:hover {
-    background-color: #575757; /* 마우스 오버 시 배경색 변경 */
-}
-.navbar .right-menu {
-    margin-right: 1cm; /* 로그인/회원가입 버튼을 왼쪽으로 1cm 이동 */
+    gap: 10px; /* 레이블과 입력창 간의 간격 */
+    align-items: center;
 }
 
-/* 메인 컨텐츠 스타일 */
-.content {
-    padding: 20px; /* 메인 컨텐츠 패딩 */
-    text-align: center; /* 컨텐츠 가운데 정렬 */
-    flex: 1; /* 메인 컨텐츠가 화면에 차지하는 비율 */
-    background-color: white; /* 메인 컨텐츠 배경색 */
+/* 레이블 스타일 */
+.info-item-3 form label {
+    width: 100px; /* 레이블의 고정 너비 */
+    font-weight: bold;
 }
 
-/*------------------------------------------------------------*/
-/* 이미지 박스를 위한 스타일 */
-.image-box {
-    width: 300px; /* 박스 너비 */
-    height: 200px; /* 박스 높이 */
-    border: 1px dashed #ccc; /* 점선 테두리 */
-    display: flex; /* 중앙 정렬을 위한 flex 사용 */
-    justify-content: center; /* 수평 가운데 정렬 */
-    align-items: center; /* 수직 가운데 정렬 */
-    margin: 20px auto; /* 위아래 간격, 좌우 자동 여백으로 중앙 정렬 */
+/* 입력창 스타일 */
+.info-item-3 form input[type="text"],
+.info-item-3 form input[type="password"] {
+    flex: 1; /* 입력창이 가로로 확장 */
+    flex-basis: 200px; /* 기본 너비 설정 */
+    max-width: 300px; /* 최대 너비 설정 */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px; /* 폰트 크기 */
 }
 
-/*------------------------------------------------------------*/
-/* 정보 섹션 스타일 */
-.info-section {
-    display: flex; /* 정보 항목을 가로로 배치 */
-    justify-content: space-between; /* 항목 간의 공간 균등 분배 */
-    margin-top: 150px; /* 정보 섹션과 상단 간격 */
-}
-.info-item-1, .info-item-2, .info-item-3 {
-    width: 30%; /* 정보 항목 너비 */
-    padding: 20px; /* 항목 패딩 */
-    border: 1px solid #ddd; /* 항목 테두리 */
-    border-radius: 8px; /* 항목 모서리 둥글게 처리 */
-    background-color: #f9f9f9; /* 항목 배경색 */
-    text-align: left; /* 텍스트 왼쪽 정렬 */
+/* 로그인 버튼 스타일 */
+.info-item-3 form button {
+    background-color: #ccc; /* 회색 배경색 */
+    color: #333; /* 글자색 */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/*------------------------------------------------------------*/
+.info-item-3 form button:hover {
+    background-color: #b3b3b3; /* 버튼 호버 시 색상 변경 */
+}
+
+/* 에러 메시지 스타일 */
+.info-item-3 .error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* 로그아웃 링크 */
+.info-item-3 a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-3 a:hover {
+    color: #0056b3; /* 호버 시 색상 변경 */
+}
+
+/* info-item-3의 링크 스타일을 위한 부모 요소 설정 */
+.info-item-3 p {
+    display: flex;
+    justify-content: center; /* 링크들을 가운데 정렬 */
+    align-items: center; /* 수직 정렬 */
+    gap: 20px; /* 링크 간 간격 설정 */
+    margin-top: 20px; /* 위쪽 여백 추가 */
+}
+
+.info-item-3 p a {
+    text-decoration: none;
+    color: #007bff; /* 링크 색상 */
+    margin-right: 5px; /* 링크 간의 여백 */
+}
+
+/* 아이디/비밀번호 찾기 링크 스타일 */
+.info-item-3 .find-button {
+    margin-left: 0; /* 왼쪽 여백 제거 */
+}
+
+
+/* 발전량 입력 박스 스타일 */
+.generation-input-box {
+    margin-top: 15px;
+    padding: 70px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 정렬을 가운데로 설정 */
+    height: 150px; /* 정사각형을 위한 높이 설정 */
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-row label {
+    margin-right: 8px;
+    font-size: 19px;
+    color: #333;
+}
+
+/* 입력창 스타일 */
+.input-row input {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100px; /* 원하는 가로 길이로 조정 */
+}
+
+
+.input-row span {
+    margin-left: 5px;
+    font-size: 20px;
+    color: #333;
+}
+
+/* 버튼 스타일 */
+.button-row {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.button-row .btn-primary {
+    padding: 24px 40px; /* 패딩을 증가시켜 버튼 크기 키우기 */
+    background: linear-gradient(135deg, #d4d4d4, #7c7c7c); /* 사선 그라데이션 배경 */
+    color: #fff; /* 기본 글자색 */
+    border: none;
+    border-radius: 8px; /* 모서리 둥글게 */
+    text-decoration: none;
+    font-size: 25px; /* 폰트 크기 증가 */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* 호버 효과 추가 */
+}
+
+.button-row .btn-primary:hover {
+    background: linear-gradient(135deg, #a5a5a5, #707070); /* 호버 시 그라데이션 색상 변경 */
+    transform: scale(1.05); /* 버튼 크기 확대 효과 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 버튼에 그림자 추가 */
+    color: #fff; /* 기본 글자색 */
+}
+
+
+
 /* 로그인 폼 스타일 */
+.info-item-3 form {
+    margin-top: 15px;
+}
+
+.info-item-3 form div {
+    margin-bottom: 10px;
+}
+
+.info-item-3 form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.info-item-3 form input {
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 로그인 버튼 */
+.info-item-3 button[type="submit"] {
+    padding: 10px 20px; /* 패딩 조정 */
+    background-color: #87CEEB; /* 채도 낮은 하늘색 */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px; /* 버튼 가로 길이 조정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    margin-left: 35%;
+}
+
+.info-item-3 button[type="submit"]:hover {
+    background-color: #6DA0D4; /* 호버 시 색상 변경 (더 어두운 하늘색) */
+}
+
+
+/* 오류 메시지 */
+.error-message {
+    margin-top: 10px;
+    color: #d9534f;
+    font-size: 12px;
+}
+
+/* 회원가입 및 찾기 링크 */
+.info-item-3 p a {
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease; /* 호버 시 색상 효과 */
+}
+
+.info-item-3 p a:hover {
+    color: #0056b3; /* 호버 시 색상 변경 */
+}
+
+
+
+/* 로그인 폼 */
 .login-form {
-    margin-top: 20px; /* 로그인 폼 상단 간격 */
-    text-align: left; /* 텍스트 왼쪽 정렬 */
+    margin-top: 20px;
+    text-align: left;
 }
 .login-form label {
-    display: block; /* 레이블을 블록 요소로 변경 */
-    margin-bottom: 5px; /* 레이블과 입력란 사이 간격 */
+    display: block;
+    margin-bottom: 5px;
 }
 .login-form input {
-    display: block; /* 입력란을 블록 요소로 변경 */
-    margin-bottom: 10px; /* 입력란 하단 간격 */
-    padding: 8px; /* 입력란 내부 패딩 */
-    width: 100%; /* 입력란 너비 100% */
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
 }
 .login-form button {
-    padding: 10px 15px; /* 버튼 패딩 */
-    background-color: #333; /* 버튼 배경색 */
-    color: white; /* 버튼 텍스트 색상 */
-    border: none; /* 버튼 테두리 없음 */
-    cursor: pointer; /* 마우스 포인터 변경 */
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 .login-form button:hover {
-    background-color: #575757; /* 마우스 오버 시 배경색 변경 */
+    background-color: #444;
 }
 
-/*------------------------------------------------------------*/
-/* 북마크 섹션 스타일 */
-.bookmark {
-    background-color: #f4f4f4; /* 북마크 배경색 */
-    padding: 20px; /* 북마크 섹션 패딩 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-    margin-top: 150px; /* 상단과의 간격 */
-}
-.bookmark h2 {
-    margin-bottom: 20px; /* 제목과 하단 간격 */
-}
-.bookmark .bookmark-list {
-    display: flex; /* 북마크 리스트를 가로로 배치 */
-    justify-content: space-around; /* 북마크 간격 균등 배분 */
-}
-.bookmark .bookmark-item {
-    background-color: white; /* 북마크 항목 배경색 */
-    border: 1px solid #ddd; /* 북마크 항목 테두리 */
-    border-radius: 8px; /* 북마크 항목 모서리 둥글게 처리 */
-    padding: 20px; /* 북마크 항목 패딩 */
-    width: 30%; /* 북마크 항목 너비 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-}
-.bookmark .bookmark-item h3 {
-    margin-top: 0; /* 제목 상단 간격 제거 */
-}
-.bookmark .bookmark-item a {
-    display: inline-block; /* 링크를 인라인 블록 요소로 변경 */
-    margin-top: 15px; /* 링크 상단 간격 */
-    padding: 10px 20px; /* 링크 패딩 */
-    background-color: #333; /* 링크 배경색 */
-    color: white; /* 링크 텍스트 색상 */
-    text-decoration: none; /* 링크 밑줄 없애기 */
-    border-radius: 5px; /* 링크 모서리 둥글게 처리 */
-}
-.bookmark .bookmark-item a:hover {
-    background-color: #575757; /* 마우스 오버 시 배경색 변경 */
+/* 참고 관련 웹사이트 섹션 */
+.reference {
+    background-color: #fff;
+    padding: 15px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px; /* 최대 너비 설정 */
 }
 
-/*------------------------------------------------------------*/
-/* 바로가기 메뉴 스타일 */
+.reference h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em; /* 크기 조정 */
+}
+
+.reference .reference-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* 화면 크기에 따라 자동으로 줄 바꿈 */
+}
+
+.reference .reference-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    width: calc(33.333% - 20px); /* 크기 조정 */
+    text-align: center;
+    box-sizing: border-box; /* 박스 크기 조정 */
+}
+
+.reference .reference-item a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em; /* 크기 조정 */
+}
+
+.reference .reference-item a:hover {
+    background-color: #444;
+}
+
+/* 바로가기 메뉴 */
 .fixed-menu {
-    position: fixed; /* 고정된 위치 */
-    top: 0; /* 상단에 고정 */
-    right: 0; /* 오른쪽에 고정 */
-    background-color: #333; /* 메뉴 배경색 */
-    width: 60px; /* 메뉴 너비 */
-    height: 100vh; /* 메뉴 높이 */
-    border-radius: 0 0 8px 8px; /* 하단 모서리 둥글게 처리 */
-    padding: 10px 0; /* 메뉴 패딩 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-    display: flex; /* 메뉴 항목을 세로로 정렬 */
-    flex-direction: column; /* 세로 방향 정렬 */
-    justify-content: space-between; /* 항목 간의 공간 균등 분배 */
-}
-.fixed-menu a {
-    display: block; /* 링크를 블록 요소로 변경 */
-    color: white; /* 링크 텍스트 색상 */
-    padding: 15px 0; /* 링크 패딩 */
-    text-decoration: none; /* 링크 밑줄 없애기 */
-    border-bottom: 1px solid #444; /* 하단에 구분선 추가 */
-    font-size: 14px; /* 링크 텍스트 크기 */
-}
-.fixed-menu a:not(:last-child) {
-    margin-bottom: 20px; /* 마지막 항목 제외한 항목 하단 간격 */
+    position: fixed;
+    top: 15%;
+    right: 1px; /* 메뉴와 화면 우측 간격 조정 */
+    background: linear-gradient(135deg, #5b5b5b, #878787); /* 사선 그라데이션 배경색 */
+    width: 80px; /* 가로 폭 설정 */
+    height: 110px; /* 세로 길이 자동 조정 */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+    transition: right 0.3s ease; /* 메뉴 열고 닫기 애니메이션 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함하여 크기 계산 */
+    border-radius: 10px; /* 모서리를 둥글게 설정 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* 넓고 짙은 그림자 추가 */
 }
 
-/*------------------------------------------------------------*/
-/* 푸터 스타일 */
+.fixed-menu .menu-header {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px; /* 상단 여백 추가 */
+    font-weight: bold;
+}
+
+.fixed-menu a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%; /* 전체 높이 사용 */
+    justify-content: center;
+}
+
+.fixed-menu a img {
+    width: 40px; /* 아이콘 크기 조정 */
+    height: auto;
+}
+
+.fixed-menu .menu-text {
+    margin-top: 8px; /* 텍스트와 아이콘 간 간격 조정 */
+    font-size: 12px; /* 텍스트 크기 조정 */
+    font-weight: bold;
+    color: #fff; /* 텍스트 색상 */
+}
+
+/* 메뉴 아이템 호버 시 툴팁 효과 */
+.fixed-menu a::after {
+    content: attr(data-label); /* 아이콘 설명 */
+    position: absolute;
+    left: 100%; /* 메뉴 아이템의 오른쪽으로 위치 조정 */
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    width: 120px; /* 툴팁의 고정 너비 */
+    text-align: center; /* 글자를 중앙 정렬 */
+    transform: scaleX(0); /* 초기에는 가로로 축소된 상태 */
+    transform-origin: left; /* 왼쪽에서부터 확장 시작 */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* 부드러운 확장과 투명도 변화 */
+    z-index: 1000; /* 툴팁이 다른 요소 위에 표시되도록 설정 */
+}
+
+/* 호버 시 툴팁이 확장되는 효과 */
+.fixed-menu a:hover::after {
+    opacity: 0.9;
+    transform: scaleX(1); /* 전체 가로 크기로 확장됨 */
+}
+
+
+
+/* 상단바에 있는 메뉴 접기 버튼 */
+/* 상단바에 있는 메뉴 접기 버튼 */
+.toggle-btn {
+    position: fixed; /* 화면의 고정된 위치에 배치 */
+    top: 20px; /* 화면의 상단에서 20px 떨어진 위치 */
+    right: 20px; /* 화면의 우측에서 20px 떨어진 위치 */
+    background: none;
+    border: none; 
+    cursor: pointer;
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
+    transition: opacity 0.3s ease; /* 부드러운 표시 전환 */
+}
+
+/* 기본 상태의 이미지 */
+.toggle-btn img {
+    width: 30px;
+    height: auto;
+    transition: opacity 0.3s ease; /* 이미지 변경 시 부드러운 전환 */
+}
+
+/* 호버 시 다른 이미지로 변경 */
+.toggle-btn:hover img {
+    content: url('https://super.so/icon/light/align-right.svg'); /* 호버 시 사용할 이미지의 경로 */
+}
+
+/* 발전량 입력 박스 */
+.generation-input-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.input-row label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+.input-row input {
+    width: 100px;
+    margin-right: 5px;
+}
+.input-row span {
+    margin-left: 5px;
+}
+.button-row a {
+    padding: 5px 15px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.button-row a:hover {
+    background-color: #444;
+}
+
+/* 공지사항 보드 */
+.notice-board {
+    display: flex;
+    justify-content: space-between;
+}
+.notice-column {
+    flex: 1;
+    padding: 0 1px;
+    text-align: left;
+}
+.notice-column h3 {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    color: #000;
+}
+.notice-column ul {
+    list-style: none;
+    padding: 0;
+}
+.notice-column li {
+    margin-bottom: 15px;
+    width:100%;
+}
+.notice-link {
+    color: #000;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.notice-link:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+.notice-link strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 15px;
+}
+.notice-link p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+.divider {
+    width: 1px;
+    background-color: #ddd;
+    margin: 0 5px;
+}
+/* 하단 메뉴 */
 footer {
-    background-color: #333; /* 푸터 배경색 */
-    color: white; /* 푸터 텍스트 색상 */
-    padding: 20px; /* 푸터 패딩 */
-    text-align: center; /* 푸터 텍스트 가운데 정렬 */
+    background-color: #f0f0f0; /* 연한 회색 배경 */
+    padding: 20px;
+    text-align: center;
 }
+
 footer a {
-    color: white; /* 링크 텍스트 색상 */
-    text-decoration: none; /* 링크 밑줄 없애기 */
+    margin: 0 10px; /* 좌우 간격 추가 */
+    color: #333; /* 어두운 회색 텍스트 */
+    text-decoration: none;
 }
+
 footer a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 표시 */
+    font-weight: bold;
 }
-/* 푸터 이메일 스타일 */
-.footer-email {
-    margin-top: 10px; /* 푸터 이메일 위쪽 여백 */
-    font-size: 14px;  /* 푸터 이메일 글꼴 크기 */
+
+footer .footer-email {
+    margin-top: 10px;
+    color: #333; /* 어두운 회색 텍스트 */
+    font-size: 14px; /* 적당한 폰트 크기 */
+}
+
+/* 링크 사이에 구분 문단선 추가 */
+footer a:not(:last-child)::after {
+    margin-left: 20px;
+    content: '|'; /* 구분 문단선 문자 */
+    color: #d0d0d0; /* 연한 회색 구분 문단선 색상 */
+}
+
+/* 전체 푸터 스타일 */
+.footer-main {
+    background-color: #f8f8f8;
+    padding: 30px 0;
+    color: #333;
+}
+
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* 전체 컨테이너 설정 */
+.map-data-container {
+    display: flex; /* Flexbox를 사용하여 두 개의 div를 가로로 배열 */
+    justify-content: space-between; /* 두 div를 공간을 균등하게 배치 */
+    margin-bottom: 30px; /* footer와의 간격을 확보 */
+    margin-top: 30px; /* 상단 여백 조정 */
+    margin-right: 90px; /* 표 오른쪽 여백 설정 */
+}
+
+/* 지도 컨테이너 */
+.map-data-map-container {
+    flex: 1; /* 남은 공간을 모두 사용하도록 설정 */
+    max-width: 80%; /* 지도 크기를 80%로 설정 */
+    overflow: hidden; /* 오버플로우를 숨김 */
+    padding-left: 80px;
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+/* 지도 크기 조정 */
+#map {
+    max-width: 100%; /* 지도 영역의 너비를 100%로 설정 */
+    height: 300px; /* 지도 높이 조정 */
+}
+
+/* 시설 정보 컨테이너 */
+.map-data-facilities-container {
+    flex: 1; /* 남은 공간을 모두 사용하도록 설정 */
+    max-width: 70%; /* 최대 너비를 70%로 설정 */
+    overflow-x: auto; /* 가로 스크롤이 가능하도록 설정 */
+    margin-left: 10px; /* 왼쪽 여백 조정 */
+}
+
+/* 표 스타일 */
+table {
+    width: 100%; /* 표 너비를 100%로 설정 */
+    border-collapse: collapse; /* 테두리 간격 제거 */
+    background-color: #fff; /* 표 배경색을 흰색으로 설정 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+}
+
+/* 헤더 셀 스타일 */
+th {
+    background-color: #8e8e8e; /* 헤더 배경색을 회색으로 설정 */
+    color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+    padding: 12px 15px; /* 패딩 조정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+/* 일반 셀 스타일 */
+td {
+    background-color: #f9f9f9; /* 셀 배경색을 밝은 회색으로 설정 */
+    border: 1px solid #ddd; /* 테두리 스타일 설정 */
+    padding: 12px 15px; /* 패딩 조정 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+/* 셀의 텍스트가 넘칠 때의 처리 */
+td, th {
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    overflow: hidden; /* 넘치는 내용 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 내용에 줄임표(...) 추가 */
+}
+
+/* 지도 컨테이너의 h1 스타일 */
+.map-data-map-container h1 {
+    font-size: 24px; /* 글자 크기 조정 */
+    color: #333; /* 글자 색상 설정 */
+    margin: 0 auto 10px auto; /* 상하 여백 설정, 좌우 자동으로 중앙 정렬 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    transition: color 0.3s ease, transform 0.3s ease; /* 호버 효과를 위한 전환 설정 */
+}
+
+/* 공공시설 컨테이너의 h1 스타일 */
+.map-data-facilities-container h1 {
+    font-size: 24px; /* 글자 크기 조정 */
+    color: #333; /* 글자 색상 설정 */
+    margin: 0 auto 10px 20px; /* 상하 여백 설정, 좌우 자동으로 중앙 정렬 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
+    transition: color 0.3s ease, transform 0.3s ease; /* 호버 효과를 위한 전환 설정 */
+}
+
+/* h1의 호버 효과 */
+h1:hover {
+    color: #007BFF; /* 호버 시 글자 색상 변경 */
+    transform: scale(1.05); /* 호버 시 살짝 확대 */
+}
+
+
+
+/* 메뉴 스타일 */
+.footer-menu {
+    margin-bottom: 20px;
+}
+
+.footer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-menu li {
+    margin: 0 15px;
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.footer-menu a:hover {
+    text-decoration: underline;
+}
+
+/* 관련사이트 및 소셜 링크 섹션 */
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.family-site {
+    flex: 1;
+}
+
+.family-site .btn-toggle {
+    position: absolute; /* 버튼의 위치를 절대적으로 설정 */
+    right: 100px; 
+    top: 1642px;
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.family-site .btn-toggle svg {
+    margin-left: 8px;
+}
+
+.__inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.__group {
+    flex: 1;
+}
+
+.__group h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.__group a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.__group a:hover {
+    text-decoration: underline;
+}
+
+.social {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.social a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.social a:hover {
+    text-decoration: underline;
+}
+
+/* 회사 정보 스타일 */
+.company-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.company-info p {
+    margin: 5px 0;
+}
+
+.company-info .split {
+    margin: 0 10px;
+}
+
+/* 색상이 서서히 변하는 애니메이션 */
+@keyframes color-change {
+    0% { color: #ff9a8b; } /* 오렌지색 */
+    25% { color: #ff6a00; } /* 진한 오렌지색 */
+    50% { color: #ffcd00; } /* 노란색 */
+    75% { color: #0072ff; } /* 블루색 */
+    100% { color: #ff9a8b; } /* 원래 오렌지색으로 돌아오기 */
+}
+
+.company-info .copy {
+    font-weight: bold; /* 글자 두께 조정 */
+    font-size: 14px; /* 글자 크기 조정 */
+    animation: color-change 5s linear infinite; /* 5초 동안 애니메이션을 무한 반복 */
+}
+
+
+
+
+/* 서비스 개요 섹션 */
+#overview {
+    padding: 20px;
+    background-color: #ffffff; /* 배경색을 흰색으로 설정 */
+    border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+}
+#overview h2 {
+    color: #333333; /* 어두운 회색 텍스트 */
+    font-size: 28px; /* 제목 크기 조정 */
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* 제목 아래에 실선 추가 */
+    padding-bottom: 10px;
+}
+#overview p {
+    color: #666666; /* 회색 텍스트 */
+    font-size: 18px; /* 본문 크기 조정 */
+    line-height: 1.6; /* 줄 높이 조정 */
+}
+#services-overview {
+    padding: 20px; /* 좌측 여백 추가 (필요에 따라 조정) */
+}
+
+#services-overview h2, 
+#services-overview p {
+    margin: 5px; /* 기본 마진 제거 (필요시 조정) */
+}
+
+/* 주요 기능 섹션 */
+#features {
+    padding: 20px;
+    background-color: #ffffff; /* 배경색을 흰색으로 설정 */
+    border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+    text-align: center; /* 섹션 내 모든 텍스트를 가운데 정렬 */
+}
+
+#features h2 {
+    color: #333333; /* 어두운 회색 텍스트 */
+    font-size: 28px; /* 제목 크기 조정 */
+    margin: 0; /* 기본 마진 제거 */
+    padding: 10px 0; /* 위아래 패딩 추가 */
+    border-bottom: 2px solid #000; /* 제목 아래에 실선 추가 */
+    text-align: center; /* 제목 텍스트를 가운데 정렬 */
+}
+
+.z-pattern {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* 항목 사이의 간격 */
+}
+.feature {
+    width: 100px; /* 고정된 가로 크기 */
+    height: auto; /* 고정된 세로 크기 */
+    background-color: #f9f9f9; /* 연한 회색 배경 */
+    border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+    transition: transform 0.3s, box-shadow 0.3s; /* 효과 전환 */
+    margin: 10px; /* 간격 추가 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature:hover {
+    transform: translateY(-5px); /* 호버 시 살짝 위로 이동 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 그림자 강도 증가 */
+}
+.feature h3 {
+    color: #333333; /* 어두운 회색 텍스트 */
+    font-size: 22px; /* 제목 크기 조정 */
+    margin-bottom: 10px;
+}
+.feature p {
+    color: #666666; /* 회색 텍스트 */
+    font-size: 16px; /* 본문 크기 조정 */
+    line-height: 1.6; /* 줄 높이 조정 */
+}
+
+/* 연락처 섹션 */
+#contact {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff; /* 배경색을 흰색으로 설정 */
+    border: 1px solid #e0e0e0; /* 연한 회색 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 추가 */
+}
+#contact h2 {
+    color: #333333; /* 어두운 회색 텍스트 */
+    font-size: 28px; /* 제목 크기 조정 */
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* 제목 아래에 실선 추가 */
+    padding-bottom: 10px;
+}
+#contact p {
+    color: #666666; /* 회색 텍스트 */
+    font-size: 18px; /* 본문 크기 조정 */
+    line-height: 1.6; /* 줄 높이 조정 */
+}
+#contact a {
+    color: #000000; /* 검정색 텍스트 */
+    text-decoration: none;
+    font-weight: bold; /* 링크 글씨 두껍게 */
+}
+#contact a:hover {
+    text-decoration: underline; /* 링크 호버 시 밑줄 추가 */
+}
+/* 서비스 개요 스타일링 */
+.overview-container {
+    display: flex;
+    align-items: flex-start; /* 내용이 상단 정렬되도록 설정 */
+    padding: 20px;
+    gap: 60px; /* 두 열 사이의 간격 조정 */
+}
+
+.overview-image {
+    max-width: 200px; /* 이미지의 최대 너비를 설정 */
+    width: 100%; /* 컨테이너에 맞게 이미지 크기 조정 */
+    height: auto; /* 이미지 비율 유지 */
+    margin-right: 10px; /* 오른쪽 여백 */
+    margin-top: 50px;
+}
+
+.overview-image img {
+    max-width: 100%; /* 이미지가 컨테이너 너비를 초과하지 않도록 설정 */
+    height: auto; /* 이미지 비율 유지 */
+    display: block; /* 이미지 아래 여백 제거 */
+}
+
+
+.overview-description {
+    width: 70%; /* 설명 영역이 컨테이너의 나머지 부분을 차지하도록 설정 */
+    text-align: center; /* 글자 가운데 정렬 */
+}
+
+/* 첫줄에서 효율적인 에너지 관리 볼드 처리 */
+.overview-description p strong {
+    font-weight: bold;
+    color: #333; /* 강조 색상 */
+}
+
+
+/* li 태그 글들의 줄 간격 조정 */
+.overview-description ul li {
+    line-height: 1.8; /* 줄 간격 넓힘 */
+    margin-bottom: 20px; /* 항목 간의 간격 */
+}
+
+/* 동그라미 모양 버튼 스타일 */
+.circle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.circle-btn {
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 0 5px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.circle-btn:hover {
+    background-color: #555;
+}
+
+
+
+
+/* 주요 기능 */
+.main_list_1_z-pattern {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+/* feature-button 내부 이미지 스타일링 */
+.main_list_1_img {
+    width: auto; /* 이미지 너비 조정 */
+    height: auto; /* 비율 유지 */
+    display: block;
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+.feature {
+    flex: 1 1 calc(33% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* 정사각형 박스를 만들고, 가운데 정렬 및 간격 조정 */
+.feature {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px; /* 정사각형 박스의 가로 크기 */
+    height: 150px; /* 정사각형 박스의 세로 크기 */
+    margin: 20px; /* 박스 사이의 간격 */
+    background-color: #f0f0f0; /* 박스의 배경색 */
+    border-radius: 10px; /* 모서리를 약간 둥글게 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+    text-align: center;
+    flex-shrink: 0; /* 내용이 넘쳐도 박스 크기를 유지 */
+}
+
+/* 버튼 안의 이미지와 텍스트 정렬 */
+.feature-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* 버튼이 정사각형 박스 내에서 꽉 차도록 */
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* 이미지 크기 조정 */
+.feature-button img {
+    width: 70px;
+    height: auto;
+    margin-bottom: 10px; /* 이미지와 텍스트 사이의 간격 */
+}
+
+/* 텍스트 스타일 */
+.feature-button span {
+    font-size: 25px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+/* 연락처 */
+#contact {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 가운데 정렬 */
+    max-width: 800px; /* 콘텐츠의 최대 너비 설정 */
+    padding: 20px;
+}
+#contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+#contact ul li {
+    margin-bottom: 10px;
+}
+
+#contact a {
+    color: #a3a3a3;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+/* 전체 글꼴 적용 */
+body, h1, h2, h3, h4, h5, h6, p, a, span, div, table, th, td {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+}
+
+/* 상단바에 적용 */
+.navbar {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+}
+
+/* 서브 메뉴에 적용 */
+.submenu {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+}
+
+/* 테이블 헤더와 셀에 적용 */
+th, td {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+}
+
+/* 기타 필요할 수 있는 요소들에도 적용 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+}
+
+/* 상단 메뉴에 적용 */
+.toggle-btn {
+    font-family: 'Pretendard Variable', Arial, sans-serif;
+}
+/* 카드 스타일 */
+.card {
+    background-color: #fff; /* 흰색 배경 */
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 */
+    padding: 20px; /* 내부 여백 */
+    margin: 20px auto; /* 상하 여백, 중앙 정렬 */
+    max-width: 800px; /* 최대 너비 */
+    box-sizing: border-box; /* 패딩과 보더를 너비에 포함 */
+}
+/* 서비스 개요 섹션 */
+#main_list_1_overview {
+    position: relative;
+    height: 400px; /* 세로 길이 조정, 필요에 따라 변경 가능 */
+    background: url('/static/images/KakaoTalk_20240919_100505941_20.jpg') no-repeat center center/cover; /* 배경 이미지 설정 */
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0.8; /* 이미지 투명도 조정 */
+}
+
+/* 제목 스타일 */
+#main_list_1_overview h2 {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5); /* 배경 색상 추가 (투명도 조절 가능) */
+    border-radius: 10px;
+}
+
+/* 오버뷰 내용 스타일 */
+.main_list_1_overview {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    max-width: 1200px; /* 최대 너비 조정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px;
+    background: rgba(70, 70, 70, 0.4); /* 배경 색상 추가 (투명도 조절 가능) */
+    border-radius: 10px;
+}
+
+/* 이미지와 설명 부분의 스타일 */
+.main_list_1_overview-image img {
+    width: 100%;
+    max-width: 500px; /* 이미지의 최대 너비 설정 */
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px; /* 이미지와 텍스트 사이의 여백 */
+}
+
+.main_list_1_overview-description {
+    max-width: 600px;
+    color: #f0f0f0; /* 텍스트 색상 설정 */
+}
+
+.main_list_1_overview-description h3 {
+    font-size: 1.8em; /* 제목 크기 조정 */
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* 은은한 그림자 추가 */
+}
+
+
+.main_list_1_overview-description p {
+    font-size: 1.1em; /* 본문 글자 크기 조정 */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main_list_1_overview-description ul {
+    list-style: disc inside; /* 불릿 스타일 */
+    padding-left: 20px; /* 좌측 패딩 */
+}
+
+.main_list_1_overview-description li {
+    margin-bottom: 10px; /* 항목 사이의 여백 */
+}
+/* 서비스 개요 섹션 */
+#main_list_2_overview {
+    position: relative;
+    height: 200px; /* 세로 길이 줄이기 */
+    background: url('/static/images/KakaoTalk_20240919_100505941_16.jpg') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0.7; /* 이미지 투명도 조정 */
+}
+
+#main_list_2_overview h2 {
+    font-size: 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.882); /* 텍스트에 그림자 추가하여 가독성 향상 */
+}
+
+#main_list_2_overview p {
+    font-size: 1.2em;
+    margin: 10px 0 0;
+    max-width: 600px; /* 텍스트 너비 조정 */
+    color: #ffffff; /* 텍스트 색상: 흰색으로 설정 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.675); /* 텍스트에 그림자 추가하여 가독성 향상 */
+}
+
+/* 주요 기능 섹션 */
+.main_list_2_f-pattern {
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 수직 방향으로 나열 */
+    gap: 20px; /* 항목 간의 간격 */
+    margin-left: 100px;
+}
+/* 주요 기능 섹션 제목 가운데 정렬 */
+#main_list_2_features h2 {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    margin: 0; /* 기본 마진 제거 */
+    padding: 20px 0; /* 위아래 패딩 추가 */
+}
+
+.main_list_2_feature {
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 아이콘과 텍스트 수직 중앙 정렬 */
+    gap: 15px; /* 아이콘과 텍스트 사이의 간격 */
+}
+
+.main_list_2_feature img {
+    width: 50px; /* 아이콘 크기 */
+    height: 50px; /* 아이콘 크기 */
+}
+
+.main_list_2_feature div {
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 수직 방향으로 나열 */
+    gap: 5px; /* 제목과 본문 사이의 간격 */
+}
+
+.main_list_2_feature h3 {
+    margin: 0; /* 제목 마진 제거 */
+    font-size: 1.2em; /* 제목 크기 */
+}
+
+.main_list_2_feature p {
+    margin: 0; /* 본문 마진 제거 */
+    font-size: 1em; /* 본문 크기 */
+}
+
+
+/* 서비스 개요 섹션 */
+#main_list_3_overview {
+    position: relative;
+    height: 200px; /* 세로 길이 줄이기 */
+    background: url('/static/images/KakaoTalk_20240919_100505941_20.jpg') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0.6; /* 이미지 투명도 조정 */
+}
+
+#main_list_3_overview h2 {
+    font-size: 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.882); /* 텍스트에 그림자 추가하여 가독성 향상 */
+}
+
+#main_list_3_overview p {
+    font-size: 1em;
+    margin: 10px 0 0;
+    max-width: 600px; /* 텍스트 너비 조정 */
+    color: #f0f0f0; /* 텍스트 색상: 흰색으로 설정 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가하여 가독성 향상 */
+}
+
+#main_list_3_overview .additional-info {
+    font-size: 1em;
+    margin-top: 20px;
+    max-width: 600px;
+    display: inline-block; /* 내부 요소를 블록 형태로 설정하여 가운데 정렬 */
+    text-align: center; /* 내부 텍스트 중앙 정렬 */
+}
+
+#main_list_3_overview .additional-info p {
+    margin: 0; /* 기본 마진 제거 */
+    color: #ddd; /* 추가 설명의 색상 */
+}
+
+/* 추천 플랜 섹션 */
+#main_list_3_plans {
+    padding: 40px 20px;
+    background-color: #f9f9f9; /* 배경 색상 추가 */
+    display: flex; /* Flexbox를 사용하여 중앙 정렬 */
+    flex-direction: column; /* 수직 방향으로 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+#main_list_3_plans h2 {
+    margin-bottom: 20px; /* 제목과 콘텐츠 사이의 여백 */
+}
+
+/* 추천 플랜 카드 컨테이너 */
+.main_list_3_plans-container {
+    display: flex; /* 가로로 나열하기 위한 flexbox */
+    flex-wrap: wrap; /* 카드가 컨테이너를 넘어가면 줄 바꿈 */
+    justify-content: center; /* 카드들을 중앙 정렬 */
+    gap: 20px; /* 카드 간의 간격 */
+}
+
+/* 추천 플랜 카드 */
+.plan-card {
+    background-color: #fff;
+    border-radius: 50%; /* 원형으로 만들기 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 200px; /* 카드의 너비 설정 */
+    height: 200px; /* 카드의 높이 설정 */
+    display: flex; /* 내부 요소를 가운데 정렬 */
+    flex-direction: column; /* 수직 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    justify-content: center; /* 수직 중앙 정렬 */
+    text-align: center; /* 카드 내부 텍스트 중앙 정렬 */
+    overflow: hidden; /* 카드 밖으로 나가는 내용 숨기기 */
+}
+
+.plan-card img {
+    width: 80%; /* 이미지의 너비를 카드의 80%로 설정 */
+    height: auto;
+    max-width: 100px; /* 이미지 최대 너비 설정 */
+    margin-bottom: 10px; /* 이미지와 텍스트 사이 여백 */
+    opacity: 0.8; /* 이미지 투명도 설정 */
+}
+
+.plan-info {
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.plan-info h3, .plan-info p {
+    margin: 5px 0; /* 제목과 본문 사이 여백 */
+}
+
+.plan-info h3 {
+    color: #333; /* 제목 색상 */
+    font-size: 1em; /* 제목 글자 크기 조절 */
+}
+
+.plan-info p {
+    color: #666; /* 본문 색상 */
+    font-size: 0.9em; /* 본문 글자 크기 조절 */
+}
+
+
+
+.main_list_3_close-btn {
+    display: none; /* 팝업 닫기 버튼 숨기기 */
+}
+/* main_list_3_description 클래스 스타일링 */
+.main_list_3_description {
+    font-size: 1em; /* 원하는 폰트 사이즈로 설정 */
+    margin: 0 auto; /* 좌우 마진 자동으로 중앙 정렬 */
+    max-width: 600px; /* 텍스트 너비 조정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+
+/* 연락처 섹션 */
+#main_list_3_contact {
+    text-align: center;
+    padding: 20px;
+}
+
+#main_list_3_contact h2 {
+    margin-bottom: 10px;
+}
+
+#main_list_3_contact p {
+    font-size: 1.1em;
+}
+
+#main_list_3_contact a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#main_list_3_contact a:hover {
+    text-decoration: underline;
+}
+
+/* 오버뷰 섹션 스타일 */
+#main_list_4_overview {
+    position: relative;
+    height: 200px; /* 세로 길이 줄이기 */
+    background: url('/static/images/KakaoTalk_20240919_100505941_12.jpg') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0.8; /* 이미지 투명도 조정 */
+}
+
+/* 오버뷰 이미지 스타일 */
+.main_list_4_overview .overview-image {
+    width: 100%;
+    max-height: 400px; /* 이미지 최대 높이 설정 */
+}
+
+.main_list_4_overview .overview-image img {
+    width: 100%; /* 이미지 가로 크기 100%로 설정 */
+    height: auto; /* 비율 유지 */
+}
+#main_list_4_overview h2 {
+    font-size: 2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.882); /* 텍스트에 그림자 추가하여 가독성 향상 */
+}
+
+#main_list_4_overview p {
+    font-size: 1em;
+    margin: 10px 0 0;
+    max-width: 600px; /* 텍스트 너비 조정 */
+    color: #f0f0f0; /* 텍스트 색상: 흰색으로 설정 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가하여 가독성 향상 */
+}
+/* 콘텐츠 섹션 스타일 */
+.main_list_4_content {
+    display: flex;               /* Flexbox 활성화 */
+    flex-direction: column;      /* 세로 방향으로 자식 요소 정렬 */
+    justify-content: center;     /* 수직 방향으로 가운데 정렬 */
+    align-items: center;         /* 수평 방향으로 가운데 정렬 */
+    text-align: center;          /* 자식 요소 내 텍스트 가운데 정렬 */
+    height: 100vh;               /* 화면 높이 100% 설정 */
+    padding: 20px;               /* 내부 여백 추가 */
+    box-sizing: border-box;      /* 패딩 및 테두리를 포함한 전체 크기 계산 */
+}
+
+
+.main_list_4_content h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.5em; /* 제목 크기 조정 */
+}
+
+.main_list_4_content p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* 중앙 정렬 및 레이아웃 설정 */
+.main_list_5_header {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    padding: 20px; /* 여백 추가 */
+}
+
+.main_list_5_header h1 {
+    font-size: 36px; /* 제목 크기 조정 */
+    color: #333; /* 텍스트 색상 설정 */
+}
+
+.main_list_5_main {
+    display: flex; /* Flexbox 활성화 */
+    flex-direction: column; /* 세로 방향으로 자식 요소 정렬 */
+    align-items: center; /* 수평 방향으로 가운데 정렬 */
+    padding: 20px; /* 내부 여백 추가 */
+}
+
+.main_list_5_card-grid {
+    display: grid; /* 그리드 레이아웃 활성화 */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 반응형 그리드 설정 */
+    gap: 20px; /* 카드 간의 간격 설정 */
+    width: 100%; /* 가로 크기 100% 설정 */
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.main_list_5_card {
+    background-color: #fff; /* 카드 배경색 설정 */
+    border: 1px solid #ddd; /* 카드 테두리 설정 */
+    border-radius: 10px; /* 카드 모서리 둥글게 */
+    overflow: hidden; /* 카드 내부 요소 넘침 방지 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 카드 그림자 추가 */
+    text-align: center; /* 카드 내 텍스트 가운데 정렬 */
+}
+
+.main_list_5_card-img {
+    width: 20%; /* 이미지 가로 크기 100%로 설정 */
+    height: auto; /* 비율 유지 */
+    margin-top: 15%;
+}
+
+.main_list_5_card-content {
+    padding: 15px; /* 내부 여백 추가 */
+}
+
+.main_list_5_card-content h2 {
+    font-size: 24px; /* 제목 크기 조정 */
+    color: #333; /* 텍스트 색상 설정 */
+    margin: 10px 0; /* 여백 설정 */
+}
+
+.main_list_5_card-content .location,
+.main_list_5_card-content .efficiency {
+    font-size: 18px; /* 텍스트 크기 조정 */
+    color: #666; /* 텍스트 색상 설정 */
+    margin: 5px 0; /* 여백 설정 */
+}
+
+
+
+/* 구분선 컨테이너 스타일 */
+.custom-divider {
+    display: flex; /* 점들을 수평으로 배치 */
+    justify-content: center; /* 점들을 중앙 정렬 */
+    align-items: center; /* 점들을 수직으로 중앙 정렬 */
+    gap: 10px; /* 점 사이의 간격 */
+    margin: 20px 0; /* 구분선의 상하 여백 */
+}
+
+/* 점 스타일 */
+.dot {
+    width: 8px; /* 점의 너비 */
+    height: 8px; /* 점의 높이 */
+    border-radius: 50%; /* 점을 둥글게 만들기 */
+    background-color: #d3d3d3; /* 점 색상 (아주 연한 회색) */
 }

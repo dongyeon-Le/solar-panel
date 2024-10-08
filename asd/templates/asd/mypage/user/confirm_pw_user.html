@@ -3,11 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>비밀번호 확인</title>
+    <style>
+        /* 기본 스타일 설정 */
+        body {
+            font-family: 'Pretendard Variable', Arial, sans-serif; /* Pretendard를 기본 글씨체로 설정 */
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 중앙 정렬을 위한 컨테이너 스타일 */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* 폼 스타일 */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        form input {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background-color: #000; /* 검은색 버튼 배경 */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            background-color: #333; /* 호버 시 다크 그레이로 변경 */
+        }
+
+        /* 링크 스타일 */
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* 설명 텍스트 스타일 */
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* 뒤로가기 링크 스타일 */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function validatePassword(event) {
+            event.preventDefault(); // 폼 제출 방지
+            var password = document.getElementById('UserPassword').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '{% url "본인확인 인증" %}', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.valid) {
+                        window.location.href = "{% url '회원정보수정' %}"; // 회원정보 수정 페이지로 이동
+                    } else {
+                        alert("비밀번호가 일치하지 않습니다.");
+                    }
+                } else {
+                    alert("서버 오류가 발생했습니다.");
+                }
+            };
+            xhr.send('UserPassword=' + encodeURIComponent(password));
+        }
+    </script>
 </head>
 <body>
-    <a href="/">main</a>
-    <p>개인 회원정보 수정을 위해 비밀번호를 입력해주세요.</p>
-    <p>비밀번호가 일치할 경우 회원정보 수정 페이지로 이동됩니다.</p>
+    <div class="container">
+        <a href="/" class="back-link">메인</a>
+        <h1>비밀번호 확인</h1>
+        <p>개인 회원정보 수정을 위해 비밀번호를 입력해주세요.</p>
+        <p>비밀번호가 일치할 경우 회원정보 수정 페이지로 이동됩니다.</p>
+        
+        <form onsubmit="validatePassword(event);">
+            {% csrf_token %}
+            <label for="UserPassword">비밀번호:</label>
+            <input type="password" id="UserPassword" name="UserPassword" required>
+            <button type="submit">확인</button>
+        </form>
+    </div>
 </body>
 </html>
